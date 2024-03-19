@@ -1,0 +1,179 @@
+{% extends 'admin/home.html' %}
+{% block title %}
+<h1 class="page-header">Banners <small>to set on homepage </small></h1>
+
+{% endblock %}
+
+{% block content %}
+{% load static %}
+{% load staticfiles %}
+ 
+	
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+				<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
+				<li class="breadcrumb-item"><a href="javascript:;">Gallery</a></li>
+				<li class="breadcrumb-item active">Gallery v1</li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">Gallery <small>Select banners to display on homepage of UI side...</small></h1>
+			<!-- end page-header -->
+			<!-- begin #options -->
+			<div id="options" class="m-b-10">
+				<span class="gallery-option-set" id="filter" data-option-key="filter">
+				<button type="button" href="#modal-dialog" data-toggle="modal" class="btn btn-inverse btn-lg">Add Banners</button>
+				
+				</span>
+				
+			</div>
+			<!-- end #options -->
+			<!-- ----- model-dialog upload image ------ -->
+			<div class="modal fade" id="modal-dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form id="image_upload_form" method="POST" action="/add_image_banner/" enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="modal-header">
+								<h4 class="modal-title">Upload image</h4>
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							</div>
+							<div class="modal-body">
+							
+								
+								<div class="row fileupload-buttonbar">
+									<div class="col-md-7">
+										<span class="btn btn-primary fileinput-button m-r-3">
+											<i class="fa fa-plus"></i>
+											<span>Add images...</span>
+											<input type="file" name="banner"  >
+											
+										</span>
+									</div>
+								</div>	
+							</div>
+							
+							<div class="modal-footer">
+								<input type="submit" value="ADD" class="btn btn-success">
+							</div>
+						</form>    
+					
+					</div>
+				</div>
+			</div>
+			<!-- =============================================== -->
+			<!-- begin #gallery -->
+			<div id="gallery" class="gallery">
+				<!-- begin image -->
+				<!-- ========== Sample Image ==================== -->
+						<!-- <div class="image gallery-group-1">
+							<div class="image-inner">
+								<a href="{% static 'admin/img/gallery/gallery-2.jpg' %}" data-lightbox="gallery-group-1">
+								<img src="{% static 'admin/img/gallery/gallery-2.jpg' %}" alt="" />
+								</a>
+								<p class="image-caption">
+									#2343 - Madness Arch
+								</p>
+							</div>
+							<div class="image-info">
+								<h5 class="title">Fusce aliquet ac quam at tincidunt</h5>
+								<div class="pull-right">
+									<small>by</small> <a href="javascript:;">Camryn Wong</a>
+								</div>
+								<div class="rating">
+									<span class="star active"></span>
+									<span class="star active"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+								</div>
+								<div class="desc">
+									Fusce eu rutrum nisi, ut pretium mi. Sed mollis nisi sed auctor molestie. Vestibulum dictum pharetra leo sed euismod.
+								</div>
+							</div>
+						</div>  -->
+				<!-- end image -->
+			
+				
+				<!-- begin image -->
+				<!-- <div class="image gallery-group-1">
+					<div class="image-inner">
+						<a href="{% static 'admin/img/gallery/gallery-1.jpg' %}" data-lightbox="gallery-group-1">
+						<img src="{% static 'admin/img/gallery/gallery-1.jpg' %}" alt="" />
+						</a>
+						
+					</div>
+					<div class="image-info">
+						    <label>
+								<input type="checkbox" id="image_1" onclick="set_Image_1()" />
+								<span>Set</span>
+							</label>
+							
+					</div>
+				</div> -->
+				<!--  end image -->
+
+					<form id="set_banners_form" action="/set_banners/" method="POST" enctype="multipart/form-data">
+						<!--  ========== New Images will be added here =========== --> 
+							{% for img in banners %}	 
+							<div class="image gallery-group-1">
+								<div class="image-inner">
+									<a href="{{ img.image }}" data-lightbox="gallery-group-1">
+									<img src=" {{img.image}} " alt="" />
+									</a>
+									{% csrf_token %}
+								</div>
+								<div class="image-info">
+										<label>
+											{% if img.status == 1 %}
+												<input type="checkbox" checked value="{{ img.id }}" name="set[]" />
+											{% else %}
+												<input type="checkbox" value="{{ img.id }}" name="set[]" />
+											{% endif %}
+												<!-- onclick="set_Image_1()" -->
+											<span>Set</span>
+											<h4>{{img.id}}</h4>
+										</label>
+										
+								</div>
+							</div>	
+							{% endfor %}		
+						<!-- =========================================================== -->
+				
+						<button type="submit "class="btn btn-primary btn-lg" >Set Banners</button>
+					</form>	
+			</div>
+			<!-- end #gallery -->
+	
+		
+
+		<!-- ---------------- SCRIPT -------------------------------- -->
+	<script>
+		// function add_image(){
+			
+		// 	$.ajax({
+		// 		url:'/add_image_banner/',
+		// 		method:'POST',
+		// 		data:$("#image_upload_form").serialize() ,
+		// 		enctype: 'multipart/form-data',
+		// 		datType:'JSON',
+		// 		success:function(data){
+		// 			alert(data.status);
+		// 			console.log(data.status);
+
+		// 		},
+		// 		failure:function(data){}
+
+		// 	});
+			
+		// }
+		
+
+
+	
+
+
+	</script>
+
+
+{% endblock %}

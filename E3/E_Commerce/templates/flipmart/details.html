@@ -1,0 +1,1242 @@
+{% extends 'flipmart/home.html' %}
+{% block title %}
+	FLIPMART | DETAILS
+{% endblock %}
+{% block content %}
+{% load static %}
+{% load staticfiles %}
+
+
+{% if request.session.user_id == None  %}
+  <script type="text/javascript">
+  window.location.href="/sign_in/";
+  </script>
+
+  {% endif %}
+
+
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Clothing</a></li>
+				<li class='active'>Floral Print Buttoned</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div><!-- /.breadcrumb -->
+<div class="body-content outer-top-xs">
+	<div class='container'>
+		<div class='row single-product'>
+			<div class='col-md-3 sidebar'>
+				<div class="sidebar-module-container">
+				<div class="home-banner outer-top-n">
+<img src="{% static 'flipmart\images\banners\LHS-banner.jpg' %}" alt="Image">
+</div>		
+  
+    
+    
+    	<!-- ============================================== HOT DEALS ============================================== -->
+<div class="sidebar-widget hot-deals wow fadeInUp outer-top-vs">
+	<h3 class="section-title">hot deals</h3>
+	<div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs">
+		
+														<div class="item">
+					<div class="products">
+						<div class="hot-deal-wrapper">
+							<div class="image">
+								<img src="{% static 'flipmart\images\hot-deals\p5.jpg' %}" alt="">
+							</div>
+							<div class="sale-offer-tag"><span>35%<br>off</span></div>
+							<div class="timing-wrapper">
+								<div class="box-wrapper">
+									<div class="date box">
+										<span class="key">120</span>
+										<span class="value">Days</span>
+									</div>
+								</div>
+				                
+				                <div class="box-wrapper">
+									<div class="hour box">
+										<span class="key">20</span>
+										<span class="value">HRS</span>
+									</div>
+								</div>
+
+				                <div class="box-wrapper">
+									<div class="minutes box">
+										<span class="key">36</span>
+										<span class="value">MINS</span>
+									</div>
+								</div>
+
+				                <div class="box-wrapper hidden-md">
+									<div class="seconds box">
+										<span class="key">60</span>
+										<span class="value">SEC</span>
+									</div>
+								</div>
+							</div>
+						</div><!-- /.hot-deal-wrapper -->
+
+						<div class="product-info text-left m-t-20">
+							<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+							<div class="rating rateit-small"></div>
+
+							<div class="product-price">	
+								<span class="price">
+									$600.00
+								</span>
+									
+							    <span class="price-before-discount">$800.00</span>					
+							
+							</div><!-- /.product-price -->
+							
+						</div><!-- /.product-info -->
+
+						<div class="cart clearfix animate-effect">
+							<div class="action">
+								
+								<div class="add-cart-button btn-group">
+									<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+										<i class="fa fa-shopping-cart"></i>													
+									</button>
+									<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+															
+								</div>
+								
+							</div><!-- /.action -->
+						</div><!-- /.cart -->
+					</div>	
+					</div>		        
+													<div class="item">
+					<div class="products">
+						<div class="hot-deal-wrapper">
+							<div class="image">
+								<img src="{% static 'flipmart\images\products\p6.jpg' %}" alt="">
+							</div>
+							<div class="sale-offer-tag"><span>35%<br>off</span></div>
+							<div class="timing-wrapper">
+								<div class="box-wrapper">
+									<div class="date box">
+										<span class="key">120</span>
+										<span class="value">Days</span>
+									</div>
+								</div>
+				                
+				                <div class="box-wrapper">
+									<div class="hour box">
+										<span class="key">20</span>
+										<span class="value">HRS</span>
+									</div>
+								</div>
+
+				                <div class="box-wrapper">
+									<div class="minutes box">
+										<span class="key">36</span>
+										<span class="value">MINS</span>
+									</div>
+								</div>
+
+				                <div class="box-wrapper hidden-md">
+									<div class="seconds box">
+										<span class="key">60</span>
+										<span class="value">SEC</span>
+									</div>
+								</div>
+							</div>
+						</div><!-- /.hot-deal-wrapper -->
+
+						<div class="product-info text-left m-t-20">
+							<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+							<div class="rating rateit-small"></div>
+
+							<div class="product-price">	
+								<span class="price">
+									$600.00
+								</span>
+									
+							    <span class="price-before-discount">$800.00</span>					
+							
+							</div><!-- /.product-price -->
+							
+						</div><!-- /.product-info -->
+
+						<div class="cart clearfix animate-effect">
+							<div class="action">
+								
+								<div class="add-cart-button btn-group">
+									<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+										<i class="fa fa-shopping-cart"></i>													
+									</button>
+									<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+															
+								</div>
+								
+							</div><!-- /.action -->
+						</div><!-- /.cart -->
+					</div>	
+					</div>		        
+													<div class="item">
+					<div class="products">
+						<div class="hot-deal-wrapper">
+							<div class="image">
+								<img src="{% static 'flipmart\images\products\p7.jpg' %}" alt="">
+							</div>
+							<div class="sale-offer-tag"><span>35%<br>off</span></div>
+							<div class="timing-wrapper">
+								<div class="box-wrapper">
+									<div class="date box">
+										<span class="key">120</span>
+										<span class="value">Days</span>
+									</div>
+								</div>
+				                
+				                <div class="box-wrapper">
+									<div class="hour box">
+										<span class="key">20</span>
+										<span class="value">HRS</span>
+									</div>
+								</div>
+
+				                <div class="box-wrapper">
+									<div class="minutes box">
+										<span class="key">36</span>
+										<span class="value">MINS</span>
+									</div>
+								</div>
+
+				                <div class="box-wrapper hidden-md">
+									<div class="seconds box">
+										<span class="key">60</span>
+										<span class="value">SEC</span>
+									</div>
+								</div>
+							</div>
+						</div><!-- /.hot-deal-wrapper -->
+
+						<div class="product-info text-left m-t-20">
+							<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+							<div class="rating rateit-small"></div>
+
+							<div class="product-price">	
+								<span class="price">
+									$600.00
+								</span>
+									
+							    <span class="price-before-discount">$800.00</span>					
+							
+							</div><!-- /.product-price -->
+							
+						</div><!-- /.product-info -->
+
+						<div class="cart clearfix animate-effect">
+							<div class="action">
+								
+								<div class="add-cart-button btn-group">
+									<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+										<i class="fa fa-shopping-cart"></i>													
+									</button>
+									<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+															
+								</div>
+								
+							</div><!-- /.action -->
+						</div><!-- /.cart -->
+					</div>	
+					</div>		        
+						
+	    
+    </div><!-- /.sidebar-widget -->
+</div>
+<!-- ============================================== HOT DEALS: END ============================================== -->					
+
+<!-- ============================================== NEWSLETTER ============================================== -->
+<div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
+	<h3 class="section-title">Newsletters</h3>
+	<div class="sidebar-widget-body outer-top-xs">
+		<p>Sign Up for Our Newsletter!</p>
+        <form>
+        	 <div class="form-group">
+			    <label class="sr-only" for="exampleInputEmail1">Email address</label>
+			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Subscribe to our newsletter">
+			  </div>
+			<button class="btn btn-primary">Subscribe</button>
+		</form>
+	</div><!-- /.sidebar-widget-body -->
+</div><!-- /.sidebar-widget -->
+<!-- ============================================== NEWSLETTER: END ============================================== -->
+
+<!-- ============================================== Testimonials============================================== -->
+<div class="sidebar-widget  wow fadeInUp outer-top-vs ">
+	<div id="advertisement" class="advertisement">
+        <div class="item">
+            <div class="avatar"><img src="{% static 'flipmart\images\testimonials\member1.png' %}" alt="Image"></div>
+		<div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
+		<div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
+        </div><!-- /.item -->
+
+         <div class="item">
+         	<div class="avatar"><img src="{% static 'flipmart\images\testimonials\member3.png' %}" alt="Image"></div>
+		<div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
+		<div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>    
+        </div><!-- /.item -->
+
+        <div class="item">
+            <div class="avatar"><img src="{% static 'flipmart\images\testimonials\member2.png' %}" alt="Image"></div>
+		<div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
+		<div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->
+        </div><!-- /.item -->
+
+    </div><!-- /.owl-carousel -->
+</div>
+    
+<!-- ============================================== Testimonials: END ============================================== -->
+
+ 
+
+				</div>
+			</div><!-- /.sidebar -->
+			<div class='col-md-9'>
+            <div class="detail-block">
+				<div class="row  wow fadeInUp">
+                
+					     <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
+    <div class="product-item-holder size-big single-product-gallery small-gallery">
+
+        <div id="owl-single-product">
+			
+			{% for img in set_of_img %}
+			<div class="single-product-gallery-item" id="{{img.id}}">
+                <a data-lightbox="image-1" data-title="Gallery" href="{{img.url_of_images}}">
+                    <img class="img-responsive" alt="" src="{{img.url_of_images}}" data-echo="{{img.url_of_images}}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+			{% endfor %}
+			
+			<div class="single-product-gallery-item" id="slide1">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p8.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p8.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide2">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p9.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p9.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide3">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p10.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p10.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide4">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p11.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p11.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide5">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p12.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p12.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide6">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p13.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p13.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide7">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p14.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p14.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide8">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p15.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p15.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+            <div class="single-product-gallery-item" id="slide9">
+                <a data-lightbox="image-1" data-title="Gallery" href="{% static 'flipmart\images\products\p16.jpg' %}">
+                    <img class="img-responsive" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p16.jpg' %}">
+                </a>
+            </div><!-- /.single-product-gallery-item -->
+
+        </div><!-- /.single-product-slider -->
+
+
+        <div class="single-product-gallery-thumbs gallery-thumbs">
+
+            <div id="owl-single-product-thumbnails">
+
+				{% for img in set_of_img %}
+				<div class="item">
+					<a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#{{img.id}}">
+						<img class="img-responsive" width="85" alt="" src="{{img.url_of_images}}" data-echo="{{img.url_of_images}}">
+					</a>
+				</div>
+				{% endfor %}
+
+
+				<div class="item">
+                    <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p17.jpg' %}">
+                    </a>
+                </div>
+
+                <div class="item">
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p18.jpg' %}">
+                    </a>
+                </div>
+                <div class="item">
+
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p19.jpg' %}">
+                    </a>
+                </div>
+                <div class="item">
+
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide4">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p20.jpg' %}">
+                    </a>
+                </div>
+                <div class="item">
+
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="5" href="#slide5">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p21.jpg' %}">
+                    </a>
+                </div>
+                <div class="item">
+
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="6" href="#slide6">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p22.jpg' %}">
+                    </a>
+                </div>
+                <div class="item">
+
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="7" href="#slide7">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p23.jpg' %}">
+                    </a>
+                </div>
+                <div class="item">
+
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="8" href="#slide8">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p24.jpg' %}">
+                    </a>
+                </div>
+                <div class="item">
+
+                    <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="9" href="#slide9">
+                        <img class="img-responsive" width="85" alt="" src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p25.jpg' %}">
+                    </a>
+                </div>
+            </div><!-- /#owl-single-product-thumbnails -->
+
+            
+
+        </div><!-- /.gallery-thumbs -->
+
+    </div><!-- /.single-product-gallery -->
+</div><!-- /.gallery-holder -->        			
+					<div class='col-sm-6 col-md-7 product-info-block'>
+						<div class="product-info">
+							<h1 class="name">{{details.product_name}}</h1>
+							
+							<div class="rating-reviews m-t-20">
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="rating rateit-small"></div>
+										<div class="star-rating" role="img" aria-label="Rated 4 out of 5"><span style="width:80%">Rated :<strong class="rating">{{avg_ratings}}</strong> out of 5</span></div>
+
+									</div>
+									<div class="col-sm-8">
+										<div class="reviews">
+											<h5 href="#" class="lnk">({{review_count}} Reviews)</h5>
+										</div>
+									</div>
+								</div><!-- /.row -->		
+							</div><!-- /.rating-reviews -->
+
+							<div class="stock-container info-container m-t-10">
+								<div class="row">
+									<div class="col-sm-2">
+										<div class="stock-box">
+											<span class="label">Availability :</span>
+										</div>	
+									</div>
+									<div class="col-sm-9">
+										<div class="stock-box">
+											<span class="value">In Stock</span>
+										</div>	
+									</div>
+								</div><!-- /.row -->	
+							</div><!-- /.stock-container -->
+
+							<div class="description-container m-t-20">
+
+								{{desc.main_description}}
+								<!-- {{desc}} -->
+
+							</div><!-- /.description-container -->
+
+							<div class="price-container info-container m-t-20">
+								<div class="row">
+									
+
+									<div class="col-sm-6">
+										{% if details.special_price_id.sale_status == 1 %}
+										<div class="price-box">
+											<span class="price">$ {{details.special_price_id.strike_price}}.00</span>
+											<span class="price-strike">$ {{details.product_price}}.00</span>
+										</div>
+										{% elif details.special_price_id.sale_status == 0 %}
+										<div class="price-box">
+											<span class="price">$ {{details.product_price}}.00</span>
+										</div>
+										{% endif %}
+										
+									</div>
+
+									<div class="col-sm-6">
+										<div class="favorite-button m-t-10">
+											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" href="#">
+											    <i class="fa fa-heart"></i>
+											</a>
+											<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
+											   <i class="fa fa-signal"></i>
+											</a>
+										
+										</div>
+									</div>
+
+								</div><!-- /.row -->
+							</div><!-- /.price-container -->
+
+							<div class="quantity-container info-container">
+								<div class="row">
+									<form >
+									<div class="col-sm-2">
+										<span class="label">Enter Qty :	</span>
+									</div>
+									
+									<div class="col-sm-2">
+										<div class="cart-quantity">
+											<div class="quant-input">
+								                <!-- <div class="arrows">
+								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+								                </div> -->
+								                <input type="number" id="quantity111" value="1">
+							              </div>
+							            </div>
+									</div>
+
+									<div class="col-sm-7">
+										<a href="#" onclick="add_to_cart_details({{details.id}},{{request.session.user_id}})" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+									</div>
+
+									
+								</div><!-- /.row -->
+							</div><!-- /.quantity-container -->
+
+							
+
+							
+
+							
+						</div><!-- /.product-info -->
+					</div><!-- /.col-sm-7 -->
+				</div><!-- /.row -->
+				</div>
+								<!-- ================================================================================================ -->
+
+				<div id="reviews-content" class="product-tabs inner-bottom-xs post-153 product type-product status-publish has-post-thumbnail product_cat-albums last instock featured downloadable taxable shipping-taxable purchasable product-type-simple animation fadeInUp animation-visible" data-animation="fadeInUp" data-animation-delay="100" itemscope="itemscope" itemtype="http://schema.org/CreativeWork" style="animation-delay: 100ms;">
+					<div class="row">
+						<div class="col-sm-3">
+							<ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
+								<li class=""><a href="#tab-description" data-toggle="tab">Description</a></li><li class="reviews active"><a href="#tab-reviews" data-toggle="tab">Reviews ({{review_count}})</a></li>        		</ul>
+						</div>
+						
+						<div class="col-sm-9">
+							<div class="tab-content">
+														<div class="tab-pane" id="tab-description">
+										
+			  <h4 class="title">Description</h4>
+			
+			<div class="text"><p>{{desc.full_description}}</p>
+			</div>            			</div>
+														<div class="tab-pane active" id="tab-reviews">
+											<div id="reviews" class="woocommerce-Reviews">
+					<div id="comments" class="row">
+						<div class="col-md-12">
+							<h3 class="title-review-comments">
+								{{review_count}} review for <span>{{details.product_name}}</span>                </h3>
+				
+												<ul class="comment-list">
+									
+									{% for review in reviews %}
+									<li class="review even thread-even depth-1" id="li-comment-41">
+			
+											<div id="comment-41" class="comment_container row">
+												<div class="col-md-2 col-sm-2">
+													<img alt="" src="http://0.gravatar.com/avatar/f0cde930b42c79145194679d5b6e3b1d?s=100&amp;d=mm&amp;r=g" srcset="http://0.gravatar.com/avatar/f0cde930b42c79145194679d5b6e3b1d?s=200&amp;d=mm&amp;r=g" class="avatar avatar-100 photo img-rounded img-responsive" height="100" width="100">        </div>
+												<div class="col-md-10 col-sm-10 outer-bottom-xs">
+													<div class="inner-bottom-xs">
+										
+														<div class="star-rating" role="img" aria-label="Rated 4 out of 5"><span style="width:80%">Rated :<strong class="rating">{{review.ratings}}</strong> out of 5</span></div>
+											<p class="meta">
+												<strong class="woocommerce-review__author">{{review.user_id.name}} </strong>
+														<span class="woocommerce-review__dash">–</span> <time class="woocommerce-review__published-date" datetime="2013-06-07T11:56:32+00:00">{{review.date}} - {{review.time}}</time>
+											</p>
+										
+										<div class="description"><p>{{review.text}}</p>
+										</div>            </div>
+												</div>
+											</div>
+										</li>
+									
+									{% endfor %}
+									
+								</ul>
+					
+															</div>
+					</div>
+				</div>
+				
+					
+					<div id="review_form_wrapper">
+						<div id="review_form" class="register-form">
+								<div id="respond" class="comment-respond">
+					<h3 id="reply-title" class="comment-reply-title title-review-comments">Add a review <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.htm#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="http://www.ckthemes.com/flipmart/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
+								<div class="clearfix"></div>  
+				<div class="blog-write-comment outer-bottom-xs outer-top-xs">
+					<div class="register-form">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
+			
+
+
+				
+				
+				<div class="comment-form-rating"><label for="rating">Your rating</label><p class="stars">						<span>							<a class="star-1" href="#">1</a>							<a class="star-2" href="#">2</a>							<a class="star-3" href="#">3</a>							<a class="star-4" href="#">4</a>							<a class="star-5" href="#">5</a>						</span>					</p>
+				<select name="rating" id="rating111" required="" >
+					<option value="">Rate…</option>
+					<option value="5">Perfect</option>
+					<option value="4">Good</option>
+					<option value="3">Average</option>
+					<option value="2">Not that bad</option>
+					<option value="1">Very poor</option>
+				</select></div>			
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="info-title" for="comment">Your review <span class="required">*</span></label>
+							<textarea id="text111"  class="form-control unicase-form-control" name="comment" cols="45" rows="8" required=""></textarea>
+						</div>
+					</div>
+				</div>
+				<p class="comment-form-author form-group">
+					<label for="author">Name&nbsp;<span class="required">*</span></label>
+					 <input class="form-control unicase-form-control" id="author" name="author" value="{{request.session.name}}"type="text" size="30" aria-required="true" required="">
+					</p>
+			
+			
+			
+			
+			
+			
+			<p class="comment-form-email form-group"><label for="email">Your ID: &nbsp;<span class="required">*</span></label> <input class="form-control unicase-form-control" id="email"  type="text" value="{{request.session.user_id}}" size="30" aria-required="true" required=""></p>
+			<p class="form-submit">
+				<input type="button" onclick="submit_review({{details.id}},{{request.session.user_id}})" id="submit111" class="btn-upper btn btn-primary checkout-page-button" value="Submit">
+				
+				<input type="hidden" name="comment_post_ID" value="153" id="comment_post_ID">
+			<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+
+			</p></div></div>			
+		</form>
+						</div><!-- #respond -->
+							</div>
+					</div>
+				
+										</div>
+												</div>
+						</div>
+					</div>
+				</div>
+				<!-- ================================================================================================ -->
+
+
+
+
+
+
+
+				<!-- ============================================== UPSELL PRODUCTS ============================================== -->
+<section class="section featured-product wow fadeInUp">
+	<h3 class="section-title">upsell products</h3>
+	<div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
+	    {% for pro in products %}
+		<div class="item item-carousel">
+			<div class="products">
+				
+	<div class="product">		
+		<div class="product-image">
+			<div class="image">
+				<a href="\details\?product_id={{pro.id}}"><img src="{{pro.main_image_id.main_image}}" alt=""></a>
+			</div><!-- /.image -->			
+
+			            <div class="tag sale"><span>sale</span></div>            		   
+		</div><!-- /.product-image -->
+			
+		
+		<div class="product-info text-left">
+			<h3 class="name"><a href="\details\?product_id={{pro.id}}">{{pro.product_name}}</a></h3>
+			<div class="rating rateit-small"></div>
+			<div class="description"></div>
+
+			<div class="product-price">	
+				<span class="price">
+					${{pro.product_price}}				</span>
+										     <span class="price-before-discount">$ 800</span>
+									
+			</div><!-- /.product-price -->
+			
+		</div><!-- /.product-info -->
+					<div class="cart clearfix animate-effect">
+				<div class="action">
+					<ul class="list-unstyled">
+						<li class="add-cart-button btn-group">
+							<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+								<i class="fa fa-shopping-cart"></i>													
+							</button>
+							<button class="btn btn-primary cart-btn" onclick="add_to_cart({{details.id}},{{request.session.user_id}})" type="button">Add to cart</button>
+													
+						</li>
+	                   
+		                <li class="lnk wishlist">
+							<a class="add-to-cart" href="\details\" title="Wishlist">
+								 <i class="icon fa fa-heart"></i>
+							</a>
+						</li>
+
+						<li class="lnk">
+							<a class="add-to-cart" href="\details\" title="Compare">
+							    <i class="fa fa-signal"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.action -->
+			</div><!-- /.cart -->
+			</div><!-- /.product -->
+      
+			</div><!-- /.products -->
+		</div><!-- /.item -->
+		{% endfor %}
+
+
+		<div class="item item-carousel">
+			<div class="products">
+				
+	<div class="product">		
+		<div class="product-image">
+			<div class="image">
+				<a href="\details\"><img src="{% static 'flipmart\images\products\p1.jpg' %}" alt=""></a>
+			</div><!-- /.image -->			
+
+			            <div class="tag sale"><span>sale</span></div>            		   
+		</div><!-- /.product-image -->
+			
+		
+		<div class="product-info text-left">
+			<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+			<div class="rating rateit-small"></div>
+			<div class="description"></div>
+
+			<div class="product-price">	
+				<span class="price">
+					$650.99				</span>
+										     <span class="price-before-discount">$ 800</span>
+									
+			</div><!-- /.product-price -->
+			
+		</div><!-- /.product-info -->
+					<div class="cart clearfix animate-effect">
+				<div class="action">
+					<ul class="list-unstyled">
+						<li class="add-cart-button btn-group">
+							<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+								<i class="fa fa-shopping-cart"></i>													
+							</button>
+							<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+													
+						</li>
+	                   
+		                <li class="lnk wishlist">
+							<a class="add-to-cart" href="\details\" title="Wishlist">
+								 <i class="icon fa fa-heart"></i>
+							</a>
+						</li>
+
+						<li class="lnk">
+							<a class="add-to-cart" href="\details\" title="Compare">
+							    <i class="fa fa-signal"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.action -->
+			</div><!-- /.cart -->
+			</div><!-- /.product -->
+      
+			</div><!-- /.products -->
+		</div><!-- /.item -->
+	
+		<div class="item item-carousel">
+			<div class="products">
+				
+	<div class="product">		
+		<div class="product-image">
+			<div class="image">
+				<a href="\details\"><img src="{% static 'flipmart\images\products\p2.jpg' %}" alt=""></a>
+			</div><!-- /.image -->			
+
+			            <div class="tag sale"><span>sale</span></div>            		   
+		</div><!-- /.product-image -->
+			
+		
+		<div class="product-info text-left">
+			<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+			<div class="rating rateit-small"></div>
+			<div class="description"></div>
+
+			<div class="product-price">	
+				<span class="price">
+					$650.99				</span>
+										     <span class="price-before-discount">$ 800</span>
+									
+			</div><!-- /.product-price -->
+			
+		</div><!-- /.product-info -->
+					<div class="cart clearfix animate-effect">
+				<div class="action">
+					<ul class="list-unstyled">
+						<li class="add-cart-button btn-group">
+							<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+								<i class="fa fa-shopping-cart"></i>													
+							</button>
+							<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+													
+						</li>
+	                   
+		                <li class="lnk wishlist">
+							<a class="add-to-cart" href="\details\" title="Wishlist">
+								 <i class="icon fa fa-heart"></i>
+							</a>
+						</li>
+
+						<li class="lnk">
+							<a class="add-to-cart" href="\details\" title="Compare">
+							    <i class="fa fa-signal"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.action -->
+			</div><!-- /.cart -->
+			</div><!-- /.product -->
+      
+			</div><!-- /.products -->
+		</div><!-- /.item -->
+	
+		<div class="item item-carousel">
+			<div class="products">
+				
+	<div class="product">		
+		<div class="product-image">
+			<div class="image">
+				<a href="\details\"><img src="{% static 'flipmart\images\products\p3.jpg' %}" alt=""></a>
+			</div><!-- /.image -->			
+
+			                        <div class="tag hot"><span>hot</span></div>		   
+		</div><!-- /.product-image -->
+			
+		
+		<div class="product-info text-left">
+			<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+			<div class="rating rateit-small"></div>
+			<div class="description"></div>
+
+			<div class="product-price">	
+				<span class="price">
+					$650.99				</span>
+										     <span class="price-before-discount">$ 800</span>
+									
+			</div><!-- /.product-price -->
+			
+		</div><!-- /.product-info -->
+					<div class="cart clearfix animate-effect">
+				<div class="action">
+					<ul class="list-unstyled">
+						<li class="add-cart-button btn-group">
+							<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+								<i class="fa fa-shopping-cart"></i>													
+							</button>
+							<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+													
+						</li>
+	                   
+		                <li class="lnk wishlist">
+							<a class="add-to-cart" href="\details\" title="Wishlist">
+								 <i class="icon fa fa-heart"></i>
+							</a>
+						</li>
+
+						<li class="lnk">
+							<a class="add-to-cart" href="\details\" title="Compare">
+							    <i class="fa fa-signal"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.action -->
+			</div><!-- /.cart -->
+			</div><!-- /.product -->
+      
+			</div><!-- /.products -->
+		</div><!-- /.item -->
+	
+		<div class="item item-carousel">
+			<div class="products">
+				
+	<div class="product">		
+		<div class="product-image">
+			<div class="image">
+				<a href="\details\"><img src="{% static 'flipmart\images\products\p4.jpg' %}" alt=""></a>
+			</div><!-- /.image -->			
+
+			<div class="tag new"><span>new</span></div>                        		   
+		</div><!-- /.product-image -->
+			
+		
+		<div class="product-info text-left">
+			<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+			<div class="rating rateit-small"></div>
+			<div class="description"></div>
+
+			<div class="product-price">	
+				<span class="price">
+					$650.99				</span>
+										     <span class="price-before-discount">$ 800</span>
+									
+			</div><!-- /.product-price -->
+			
+		</div><!-- /.product-info -->
+					<div class="cart clearfix animate-effect">
+				<div class="action">
+					<ul class="list-unstyled">
+						<li class="add-cart-button btn-group">
+							<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+								<i class="fa fa-shopping-cart"></i>													
+							</button>
+							<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+													
+						</li>
+	                   
+		                <li class="lnk wishlist">
+							<a class="add-to-cart" href="\details\" title="Wishlist">
+								 <i class="icon fa fa-heart"></i>
+							</a>
+						</li>
+
+						<li class="lnk">
+							<a class="add-to-cart" href="\details\" title="Compare">
+							    <i class="fa fa-signal"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.action -->
+			</div><!-- /.cart -->
+			</div><!-- /.product -->
+      
+			</div><!-- /.products -->
+		</div><!-- /.item -->
+	
+		<div class="item item-carousel">
+			<div class="products">
+				
+	<div class="product">		
+		<div class="product-image">
+			<div class="image">
+				<a href="\details\"><img src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p5.jpg' %}" alt=""></a>
+			</div><!-- /.image -->			
+
+			                        <div class="tag hot"><span>hot</span></div>		   
+		</div><!-- /.product-image -->
+			
+		
+		<div class="product-info text-left">
+			<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+			<div class="rating rateit-small"></div>
+			<div class="description"></div>
+
+			<div class="product-price">	
+				<span class="price">
+					$650.99				</span>
+										     <span class="price-before-discount">$ 800</span>
+									
+			</div><!-- /.product-price -->
+			
+		</div><!-- /.product-info -->
+					<div class="cart clearfix animate-effect">
+				<div class="action">
+					<ul class="list-unstyled">
+						<li class="add-cart-button btn-group">
+							<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+								<i class="fa fa-shopping-cart"></i>													
+							</button>
+							<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+													
+						</li>
+	                   
+		                <li class="lnk wishlist">
+							<a class="add-to-cart" href="\details\" title="Wishlist">
+								 <i class="icon fa fa-heart"></i>
+							</a>
+						</li>
+
+						<li class="lnk">
+							<a class="add-to-cart" href="\details\" title="Compare">
+							    <i class="fa fa-signal"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.action -->
+			</div><!-- /.cart -->
+			</div><!-- /.product -->
+      
+			</div><!-- /.products -->
+		</div><!-- /.item -->
+	
+		<div class="item item-carousel">
+			<div class="products">
+				
+	<div class="product">		
+		<div class="product-image">
+			<div class="image">
+				<a href="\details\"><img src="{% static 'flipmart\images\blank.gif' %}" data-echo="{% static 'flipmart\images/products/p6.jpg' %}" alt=""></a>
+			</div><!-- /.image -->			
+
+			<div class="tag new"><span>new</span></div>                        		   
+		</div><!-- /.product-image -->
+			
+		
+		<div class="product-info text-left">
+			<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+			<div class="rating rateit-small"></div>
+			<div class="description"></div>
+
+			<div class="product-price">	
+				<span class="price">
+					$650.99				</span>
+										     <span class="price-before-discount">$ 800</span>
+									
+			</div><!-- /.product-price -->
+			
+		</div><!-- /.product-info -->
+					<div class="cart clearfix animate-effect">
+				<div class="action">
+					<ul class="list-unstyled">
+						<li class="add-cart-button btn-group">
+							<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
+								<i class="fa fa-shopping-cart"></i>													
+							</button>
+							<button class="btn btn-primary cart-btn"  type="button">Add to cart</button>
+													
+						</li>
+	                   
+		                <li class="lnk wishlist">
+							<a class="add-to-cart" href="\details\" title="Wishlist">
+								 <i class="icon fa fa-heart"></i>
+							</a>
+						</li>
+
+						<li class="lnk">
+							<a class="add-to-cart" href="\details\" title="Compare">
+							    <i class="fa fa-signal"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.action -->
+			</div><!-- /.cart -->
+			</div><!-- /.product -->
+      
+			</div><!-- /.products -->
+		</div><!-- /.item -->
+			</div><!-- /.home-owl-carousel -->
+</section><!-- /.section -->
+<!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
+			
+			</div><!-- /.col -->
+			<div class="clearfix"></div>
+		</div><!-- /.row -->
+		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
+<div id="brands-carousel" class="logo-slider wow fadeInUp">
+
+		<div class="logo-slider-inner">	
+			<div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
+				<div class="item m-t-15">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand1.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item m-t-10">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand2.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand3.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand4.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand5.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand6.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand2.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand4.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand1.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand5.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+		    </div><!-- /.owl-carousel #logo-slider -->
+		</div><!-- /.logo-slider-inner -->
+	
+</div><!-- /.logo-slider -->
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	
+</div><!-- /.container -->
+</div><!-- /.body-content -->
+
+
+
+
+
+
+<script>
+
+
+function add_to_cart_details(product_id,user_id){
+	var qty = document.getElementById("quantity111").value;
+	alert(qty);
+  $.ajax({
+    url:'/add_to_cart_details/',
+    method:'GET',
+    data:{"product_id":product_id,"user_id":user_id,"quantity":qty ,csrfmiddlewaretoken:'{{ csrf_token }}'},
+    dataType:'JSON',
+    success:function(data){
+      let rows = '';
+      console.log(data.cart_all);    
+
+      var a = `<span id="Total_of_cart1">${data.Total_price}</span>`;
+      var b = `<span id="Total_of_cart2">${data.Total_price}</span>`;
+      var c = `<span id="Total_items">${data.items}</span>`;
+      $('#Total_of_cart1').html(a);
+      $('#Total_of_cart2').html(b);
+      $('#Total_items').html(c);
+      //${cart.product_id_id.main_image_id_id.main_image}    
+      data.cart_all.forEach(cart => {
+        console.log(cart.product_id_id.id);  
+        rows += `<li>
+              <div class="cart-item product-summary">
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="image"> <a href="/details/"><img src="${cart.product_id_id.main_image_id_id.main_image}" alt=""></a> </div>
+                  </div>
+                  <div class="col-xs-7">
+                    <h3 class="name">${cart.product_id.product_name} - x${cart.product_quantity}</h3>
+                    <div class="price">$ ${cart.product_price}</div>
+                  </div>
+                  <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                </div>
+              </div>
+              <!-- /.cart-item -->
+              <div class="clearfix"></div>
+              <hr>
+              
+            </li>`;
+          });
+        console.log(data.cart_all);    
+        $('#cart_added').html(rows);
+      
+    },
+    failure:function(data){}
+  });
+}
+
+
+function submit_review(product_id,user_id){
+	var rating = document.getElementById("rating111").value;
+	var txt = document.getElementById("text111").value;
+	if (rating == "" ){
+		alert('please select rating');
+	}
+	else{
+		$.ajax({
+			url:'/submit_review/',
+			method:'POST',
+			data:{"product_id":product_id,"user_id":user_id,"ratings":rating,"text":txt ,csrfmiddlewaretoken:'{{ csrf_token }}'},
+			dataType:'JSON',
+			success:function(data){
+			if(data.done){
+				alert('review submited');
+			}
+			else{
+				alert('please give ratings');
+			}
+			
+			},
+			failure:function(data){}
+		});
+	}
+}</script>
+
+{% endblock %}

@@ -1,0 +1,596 @@
+{% extends 'flipmart/home.html' %}
+{% block title %}
+    FLIPMART | CHECKOUT
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+{% if request.session.user_id == None  %}
+  <script type="text/javascript">
+  window.location.href="/sign_in/";
+  </script>
+
+  {% endif %}
+
+
+
+<div class="breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-inner">
+				<ul class="list-inline list-unstyled">
+					<li class="active" ><a href="#">Home </a>/ <a href="#">Checkout</a></li>
+					
+				</ul>
+			</div><!-- /.breadcrumb-inner -->
+		</div><!-- /.container -->
+	</div><!-- /.breadcrumb -->
+<div class="clearfix"></div>
+<main class="body-content site-main" id="content">
+    	<div id="primary" class="body-content">
+    		
+			<div class="container post-15 page type-page status-publish hentry" id="post-15" itemscope="itemscope" itemtype="http://schema.org/CreativeWork">
+
+			<div class="entry-content entry-content" itemprop="text">
+			<div class="woocommerce"><div class="woocommerce-notices-wrapper"></div>
+				<div class="checkout woocommerce-checkout checkout-box">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="panel-group checkout-steps" id="accordion-content">
+								<!-- ======= Returning Customer ================= -->
+								<div class="woocommerce-billing-fields panel panel-default checkout-step-0">
+					<div class="panel-heading">
+					<h4 class="unicase-checkout-title">
+						<a data-toggle="collapse" class="collapsed" data-parent="#accordion-content" href="#collapseLogin">
+							<span>L</span> Returning customer?        </a>
+					</h4>
+					</div>
+					
+					<div id="collapseLogin" class="panel-collapse collapse" style="height: 0px;">
+						<div class="shipping_address panel-body"> 
+							<form class="woocomerce-form woocommerce-form-login login" method="post">
+
+					
+					<p>If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.</p>
+
+					<p class="form-row form-row-first form-group">
+						<label class="info-title" for="username">Username or email <span class="required">*</span></label>
+						<input type="text" value={{user.email}} class="input-text form-control unicase-form-control text-input" name="username" id="username">
+					</p>
+					<p class="form-row form-row-last form-group">
+						<label class="info-title" for="password">Password <span class="required">*</span></label>
+						<input class="input-text form-control unicase-form-control text-input" type="password" name="password" value="{{user.password}}" id="password">
+					</p>
+					<div class="clearfix"></div>
+
+						<div class="radio outer-xs">
+						<label class="woocommerce-form__label woocommerce-form__label-for-checkbox inline">
+							<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever"> <span>Remember me</span>
+						</label>
+						<a href="http://www.ckthemes.com/flipmart/my-account/lost-password/" class="forgot-password pull-right">Lost your password?</a>
+					</div>
+					
+					<p class="form-row">
+						<input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="9a82f8b653"><input type="hidden" name="_wp_http_referer" value="/flipmart/checkout/">		<button type="submit" class="btn-upper btn btn-primary checkout-page-button" name="login" value="Login">Login</button>
+						<input type="hidden" name="redirect" value="http://www.ckthemes.com/flipmart/checkout/">
+					</p>
+
+					<div class="clearfix"></div>
+
+					
+				</form>
+						</div>
+					</div>
+								</div>
+								<!-- ================= COUPEN =========================== -->
+								<div class="woocommerce-billing-fields panel panel-default checkout-step-0">
+									<div class="panel-heading">
+									<h4 class="unicase-checkout-title">
+										<a data-toggle="collapse" class="" data-parent="#accordion-content" href="#collapseCoupons">
+											<span>C</span> Have a coupon?        </a>
+									</h4>
+									</div>
+									
+									<div id="collapseCoupons" class="panel-collapse collapse in" style="">
+										<div class="shipping_address panel-body"> 
+											
+											<p>If you have a coupon code, please apply it below.</p>
+											
+											<form class="" method="post">
+									
+												<p class="form-row form-row-first">
+													<input type="text" name="coupon_code" class="input-text form-control unicase-form-control text-input" placeholder="Coupon code" id="coupon_code" value="">
+												</p>
+											
+												<p class="form-row form-row-last">
+													<input type="submit" class="btn btn-upper btn-primary pull-right outer-right-xs" name="apply_coupon" value="Apply coupon">
+												</p>
+											
+												<div class="clearfix"></div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="woocommerce-notices-wrapper"></div>
+							</div>  
+									
+							
+
+<form name="checkout" method="post" class="checkout woocommerce-checkout checkout-box" action="/place_order/" enctype="multipart/form-data" novalidate="novalidate">
+	{% csrf_token %}
+	<div class="panel-group checkout-steps" id="accordion">
+							
+		<div class="woocommerce-billing-fields panel panel-default checkout-step-01">
+
+		<div class="panel-heading">
+		<h4 class="unicase-checkout-title">
+		<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseOne">
+					
+			<span>1</span>Billing details            
+					</a>
+		</h4>
+		</div>
+
+		<div id="collapseOne" class="panel-collapse collapse in">
+
+		<div class="woocommerce-billing-fields__field-wrapper panel-body">
+			<div class="form-group row form-row-first validate-required" id="billing_first_name_field" data-priority="10">
+				<div class="col-md-6">
+					<label for="billing_first_name" class="">Customer name&nbsp;<abbr class="required" title="required">*</abbr></label>
+					<span class="woocommerce-input-wrapper">
+						<input type="text" class="input-text form-control unicase-form-control " name="billing_first_name" id="billing_first_name" value="{{user.name}}" autocomplete="given-name"></span>
+					</div>
+					
+					
+					<div class="form-group row form-row-wide" id="billing_company_field" data-priority="30">
+						<div class="col-md-12">
+							<label for="billing_company" class="">Company name&nbsp;<span class="optional">(NOT optional)</span></label><span class="woocommerce-input-wrapper">
+								<input type="text" class="input-text form-control unicase-form-control " name="billing_company" id="billing_company" placeholder="" value="{{address.company_name}}" autocomplete="organization"></span>
+							</div>
+						</div>
+						
+						<div class="form-group row form-row-wide address-field update_totals_on_change validate-required" id="billing_country_field" data-priority="40">
+							<div class="col-md-12">
+								<label for="billing_country" class="">Country&nbsp;<abbr class="required" title="required">*</abbr></label>
+								<span class="woocommerce-input-wrapper">
+									
+									<select name="billing_country" id="billing_country" class="form-control unicase-form-control country_to_state country_select select2-hidden-accessible" autocomplete="country" tabindex="-1" aria-hidden="true">
+										<option value="">Select a country…</option>
+										<option value="AX">Åland Islands</option>
+										<option value="AF">Afghanistan</option>
+										<option value="AL">Albania</option>
+										<option value="DZ">Algeria</option>
+									</select>
+									<span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;">
+										<span class="selection">
+											<span class="select2-selection select2-selection--single" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-billing_country-container" role="combobox">
+												
+												<span class="select2-selection__rendered" id="select2-billing_country-container" role="textbox" aria-readonly="true" title="India">India</span>
+												
+												<span class="select2-selection__arrow" role="presentation"><b role="presentation"></b>
+												</span>
+											</span>
+										</span>
+										<span class="dropdown-wrapper" aria-hidden="true"></span>
+									</span>
+									
+									<noscript>
+										<button type="submit" name="woocommerce_checkout_update_totals" value="Update country">Update country</button>
+									</noscript>
+								</span>
+							</div>
+						</div>
+						<div class="form-group row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="50">
+							<div class="col-md-12">
+								<label for="billing_address_1" class="">Street address&nbsp;<abbr class="required" title="required">*</abbr></label>
+								
+								<span class="woocommerce-input-wrapper">
+									<input type="text" class="input-text form-control unicase-form-control " name="billing_address_1" id="billing_address_1" placeholder="House number and street name" value="{{address.house_no_and_street_name}}" autocomplete="address-line1" data-placeholder="House number and street name">
+								</span>
+							</div>
+						</div>
+						<div class="form-group row form-row-wide address-field" id="billing_address_2_field" data-priority="60">
+							<div class="col-md-12">
+								<label for="billing_address_2" class="screen-reader-text">Apartment, suite, unit etc. (optional)&nbsp;<span class="optional">(optional)</span>
+								</label>
+								<span class="woocommerce-input-wrapper">
+									<input type="text" class="input-text form-control unicase-form-control " name="billing_address_2" id="billing_address_2" placeholder="Apartment, suite, unit etc. (optional)" value="{{address.apartment}}" autocomplete="address-line2" data-placeholder="Apartment, suite, unit etc. (optional)">
+								</span>
+								</div>
+							</div>
+							<div class="form-group row form-row-wide address-field validate-required" id="billing_city_field" data-priority="70" data-o_class="form-group row form-row-wide address-field validate-required">
+								<div class="col-md-12">
+									<label for="billing_city" class="">Town / City&nbsp;<abbr class="required" title="required">*</abbr></label>
+									<span class="woocommerce-input-wrapper">
+										<input type="text" class="input-text form-control unicase-form-control " name="billing_city" id="billing_city" placeholder="" value="{{address.city}}" autocomplete="address-level2">
+									</span>
+								</div>
+							</div>
+							<div class="form-group row form-row-wide address-field validate-required validate-state" id="billing_state_field" data-priority="80" data-o_class="form-group row form-row-wide address-field validate-required validate-state">
+								<div class="col-md-12">
+									<label for="billing_state" class="">State / County&nbsp;<abbr class="required" title="required">*</abbr></label>
+									<span class="woocommerce-input-wrapper">
+										
+										<select name="billing_state" id="billing_state" class="form-control unicase-form-control state_select select2-hidden-accessible" autocomplete="address-level1" data-placeholder="Select an option…" tabindex="-1" aria-hidden="true">
+											<option value="">Select an option…</option>
+											<option value="AP">Andhra Pradesh</option><option value="AR">Arunachal Pradesh</option><option value="AS">Assam</option><option value="BR">Bihar</option><option value="CT">Chhattisgarh</option><option value="GA">Goa</option><option value="GJ">Gujarat</option><option value="HR">Haryana</option><option value="HP">Himachal Pradesh</option><option value="JK">Jammu and Kashmir</option><option value="JH">Jharkhand</option><option value="KA">Karnataka</option><option value="KL">Kerala</option><option value="MP">Madhya Pradesh</option><option value="MH">Maharashtra</option><option value="MN">Manipur</option><option value="ML">Meghalaya</option><option value="MZ">Mizoram</option><option value="NL">Nagaland</option><option value="OR">Orissa</option><option value="PB">Punjab</option><option value="RJ">Rajasthan</option><option value="SK">Sikkim</option><option value="TN">Tamil Nadu</option><option value="TS">Telangana</option><option value="TR">Tripura</option><option value="UK">Uttarakhand</option><option value="UP">Uttar Pradesh</option><option value="WB">West Bengal</option><option value="AN">Andaman and Nicobar Islands</option><option value="CH">Chandigarh</option><option value="DN">Dadra and Nagar Haveli</option><option value="DD">Daman and Diu</option><option value="DL">Delhi</option><option value="LD">Lakshadeep</option><option value="PY">Pondicherry (Puducherry)</option>
+										</select>
+										<span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;">
+											<span class="selection">
+												<span class="select2-selection select2-selection--single" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-billing_state-container" role="combobox">
+													<span class="select2-selection__rendered" id="select2-billing_state-container" role="textbox" aria-readonly="true">
+														<span class="select2-selection__placeholder">Select an option…</span>
+													</span>
+													<span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></span>
+												</div>
+											</div>
+											<div class="form-group row form-row-wide address-field validate-required validate-postcode" id="billing_postcode_field" data-priority="90" data-o_class="form-group row form-row-wide address-field validate-required validate-postcode">
+												<div class="col-md-12">
+													<label for="billing_postcode" class="">Postcode / ZIP&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper">
+														<input type="text" class="input-text form-control unicase-form-control " name="billing_postcode" id="billing_postcode" placeholder="" value="{{address.pincode}}" autocomplete="postal-code"></span>
+													</div>
+												</div>
+												<div class="form-group row form-row-wide validate-required validate-phone" id="billing_phone_field" data-priority="100">
+													<div class="col-md-12"><label for="billing_phone" class="">Phone&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper">
+														<input type="tel" class="input-text form-control unicase-form-control " name="billing_phone" id="billing_phone" placeholder="" value="{{user.phone_no}}" autocomplete="tel"></span>
+													</div>
+												</div>
+												<div class="form-group row form-row-wide validate-required validate-email" id="billing_email_field" data-priority="110">
+													<div class="col-md-12"><label for="billing_email" class="">Email address&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper">
+														<input type="email" class="input-text form-control unicase-form-control " name="billing_email" id="billing_email" placeholder="" value="{{user.email}}" autocomplete="email"></span>
+													</div>
+												</div> 
+											</div>
+
+
+			<div class="woocommerce-account-fields col-md-12">
+				
+			<p class="form-row form-row-wide create-account radio radio-checkout-unicase woocommerce-validated">
+				<input class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" id="createaccount" type="checkbox" name="base_add" >
+				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox radio-button guest-check">Save this address as yours?</label>
+			</p>
+
+				
+				
+				
+			<!-- <div class="create-account" style="display: none;">
+											<div class="form-group row validate-required" id="account_password_field" data-priority=""><div class="col-md-12"><label for="account_password" class="">Create account password&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input type="password" class="input-text form-control unicase-form-control " name="account_password" id="account_password" placeholder="Password" value=""></span></div></div>        				        					<div class="form-group row validate-required" id="account_username_field" data-priority=""><div class="col-md-12"><label for="account_username" class="">Account username&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="account_username" id="account_username" placeholder="Username" value=""></span></div></div>        				        				<div class="clearfix"></div>
+			</div> -->
+
+				
+					</div>
+		<div class="clearfix"></div>
+		</div>
+		</div>            			
+		<div class="woocommerce-shipping-fields woocommerce-billing-fields panel panel-default checkout-step-02">
+
+<div class="panel-heading" id="ship-to-different-address">
+<h4 class="unicase-checkout-title">
+<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseTwo">
+<span>2</span>Ship to a different address?    	        </a>
+</h4>
+</div>
+
+<div id="collapseTwo" class="panel-collapse collapse">
+<div class="shipping_address panel-body">
+
+<div class="radio radio-checkout-unicase">
+<input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" id="new_ship_add" onclick="ship_new_address()" type="checkbox" name="ship_to_different_address" > 
+<label class="radio-button guest-check">Ship to a different address?</label>
+</div>
+
+				
+<div class="woocommerce-shipping-fields__field-wrapper" id="id_of_new_add">
+<div class="form-group row form-row-first validate-required" id="shipping_first_name_field" data-priority="10"><div class="col-md-6"><label for="shipping_first_name" class="">First name&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="shipping_first_name" id="shipping_first_name" placeholder="" value="" autocomplete="given-name"></span></div><div class="  form--last validate-required" id="shipping_last_name_field" data-priority="20"><div class="col-md-6"><label for="shipping_last_name" class="">Last name&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="shipping_last_name" id="shipping_last_name" placeholder="" value="" autocomplete="family-name"></span></div></div></div><div class="form-group row form-row-wide" id="shipping_company_field" data-priority="30"><div class="col-md-12"><label for="shipping_company" class="">Company name&nbsp;<span class="optional">(optional)</span></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="shipping_company" id="shipping_company" placeholder="" value="" autocomplete="organization"></span></div></div><div class="form-group row form-row-wide address-field update_totals_on_change validate-required" id="shipping_country_field" data-priority="40"><div class="col-md-12"><label for="shipping_country" class="">Country&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><select name="shipping_country" id="shipping_country" class="form-control unicase-form-control country_to_state country_select " autocomplete="country"><option value="">Select a country…</option><option value="AX">Åland Islands</option><option value="AF">Afghanistan</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="PW">Belau</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BQ">Bonaire, Saint Eustatius and Saba</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BV">Bouvet Island</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo (Brazzaville)</option><option value="CD">Congo (Kinshasa)</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="HR">Croatia</option><option value="CU">Cuba</option><option value="CW">Curaçao</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and McDonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN" selected="selected">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="CI">Ivory Coast</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macao S.A.R., China</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="KP">North Korea</option><option value="MK">North Macedonia</option><option value="MP">Northern Mariana Islands</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PS">Palestinian Territory</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Reunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="ST">São Tomé and Príncipe</option><option value="BL">Saint Barthélemy</option><option value="SH">Saint Helena</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="SX">Saint Martin (Dutch part)</option><option value="MF">Saint Martin (French part)</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and the Grenadines</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia/Sandwich Islands</option><option value="KR">South Korea</option><option value="SS">South Sudan</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom (UK)</option><option value="US">United States (US)</option><option value="UM">United States (US) Minor Outlying Islands</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="VG">Virgin Islands (British)</option><option value="VI">Virgin Islands (US)</option><option value="WF">Wallis and Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option></select><noscript><button type="submit" name="woocommerce_checkout_update_totals" value="Update country">Update country</button></noscript></span></div></div><div class="form-group row form-row-wide address-field validate-required" id="shipping_address_1_field" data-priority="50"><div class="col-md-12"><label for="shipping_address_1" class="">Street address&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="shipping_address_1" id="shipping_address_1" placeholder="House number and street name" value="" autocomplete="address-line1" data-placeholder="House number and street name"></span></div></div><div class="form-group row form-row-wide address-field" id="shipping_address_2_field" data-priority="60"><div class="col-md-12"><label for="shipping_address_2" class="screen-reader-text">Apartment, suite, unit etc. (optional)&nbsp;<span class="optional">(optional)</span></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="shipping_address_2" id="shipping_address_2" placeholder="Apartment, suite, unit etc. (optional)" value="" autocomplete="address-line2" data-placeholder="Apartment, suite, unit etc. (optional)"></span></div></div><div class="form-group row form-row-wide address-field validate-required" id="shipping_city_field" data-priority="70" data-o_class="form-group row form-row-wide address-field validate-required"><div class="col-md-12"><label for="shipping_city" class="">Town / City&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="shipping_city" id="shipping_city" placeholder="" value="" autocomplete="address-level2"></span></div></div><div class="form-group row form-row-wide address-field validate-required validate-state" id="shipping_state_field" data-priority="80" data-o_class="form-group row form-row-wide address-field validate-required validate-state"><div class="col-md-12"><label for="shipping_state" class="">State / County&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><select name="shipping_state" id="shipping_state" class="form-control unicase-form-control state_select " autocomplete="address-level1" data-placeholder="Select an option…"><option value="">Select an option…</option><option value="AP">Andhra Pradesh</option><option value="AR">Arunachal Pradesh</option><option value="AS">Assam</option><option value="BR">Bihar</option><option value="CT">Chhattisgarh</option><option value="GA">Goa</option><option value="GJ">Gujarat</option><option value="HR">Haryana</option><option value="HP">Himachal Pradesh</option><option value="JK">Jammu and Kashmir</option><option value="JH">Jharkhand</option><option value="KA">Karnataka</option><option value="KL">Kerala</option><option value="MP">Madhya Pradesh</option><option value="MH">Maharashtra</option><option value="MN">Manipur</option><option value="ML">Meghalaya</option><option value="MZ">Mizoram</option><option value="NL">Nagaland</option><option value="OR">Orissa</option><option value="PB">Punjab</option><option value="RJ">Rajasthan</option><option value="SK">Sikkim</option><option value="TN">Tamil Nadu</option><option value="TS">Telangana</option><option value="TR">Tripura</option><option value="UK">Uttarakhand</option><option value="UP">Uttar Pradesh</option><option value="WB">West Bengal</option><option value="AN">Andaman and Nicobar Islands</option><option value="CH">Chandigarh</option><option value="DN">Dadra and Nagar Haveli</option><option value="DD">Daman and Diu</option><option value="DL">Delhi</option><option value="LD">Lakshadeep</option><option value="PY">Pondicherry (Puducherry)</option></select></span></div></div><div class="form-group row form-row-wide address-field validate-required validate-postcode" id="shipping_postcode_field" data-priority="90" data-o_class="form-group row form-row-wide address-field validate-required validate-postcode"><div class="col-md-12"><label for="shipping_postcode" class="">Postcode / ZIP&nbsp;<abbr class="required" title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input type="text" class="input-text form-control unicase-form-control " name="shipping_postcode" id="shipping_postcode" placeholder="" value="" autocomplete="postal-code"></span></div></div>                    </div>
+
+
+</div>
+</div>
+		</div>
+		<div class="woocommerce-additional-fields woocommerce-billing-fields panel panel-default checkout-step-03">
+
+					
+			<div class="panel-heading">
+				<h4 class="unicase-checkout-title">
+					<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseThree">
+						<span>3</span>Additional information    	        </a>
+					</h4>
+			</div>
+			
+			<div id="collapseThree" class="panel-collapse collapse">    
+				<div class="woocommerce-additional-fields__field-wrapper panel-body">
+										<div class="form-group row notes" id="order_comments_field" data-priority=""><div class="col-md-12"><label for="order_comments" class="">Order notes&nbsp;<span class="optional">(optional)</span></label><span class="woocommerce-input-wrapper"><textarea name="order_comments" class="input-text form-control unicase-form-control " id="order_comments" placeholder="Notes about your order, e.g. special notes for delivery." rows="2" cols="5"></textarea></span></div></div>    			    		</div>
+			</div>
+
+		</div>
+		<div class="woocommerce-billing-fields panel panel-default checkout-step-04">
+			<div class="panel-heading">
+				<h4 class="unicase-checkout-title">
+				<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFour">
+					<span>4</span>Order Review                                    </a>
+				</h4>
+			</div>
+			
+			<div id="collapseFour" class="panel-collapse collapse">
+				<div class="shipping_address panel-body"> 
+												
+						<table class="shop_table woocommerce-checkout-review-order-table table">
+<thead>
+<tr>
+<th class="cart-romove item">Remove</th>
+<th class="cart-description item">Image</th>
+<th class="cart-product-name item">Product</th>
+<th class="cart-sub-total item">Price</th>
+<th class="cart-qty item">Quantity</th>
+<th class="cart-total last-item">Total</th>
+</tr>
+</thead>
+<tbody>
+
+
+	{% for product in cart_all %}
+	<tr class="woocommerce-cart-form__cart-item cart_item">
+
+		<td class="romove-item">
+			<a href="#" class="remove" onclick="del_pro_cart({{product.product_id.id}})" aria-label="Remove this item" data-product_id="142" data-product_sku=""><i class="fa fa-trash-o"></i></a></td>
+		
+		<td class="cart-image">
+			<a href="\details\?product_id={{product.product_id.id}}"><img width="100" height="100" src="{{product.product_id.main_image_id.main_image}}" class="attachment-100x100 size-100x100" alt=""></a>					</td>
+		
+		<td class="cart-product-name-info" data-title="Product">
+			<h4 class="cart-product-description">
+				<a href="\details\?product_id={{product.product_id.id}}">{{product.product_id.product_name}}</a>                        </h4>
+									<div class="rating-reviews">
+				<div class="rating rateit-small" data-rating="4"></div>						</div>
+			
+			<div class="cart-product-info"></div>					</td>
+		
+		<td class="cart-product-sub-total" data-title="Price">
+			{% if product.product_id.special_price_id.sale_status == 1 %}
+			<span class="woocs_special_price_code"><span class="woocommerce-Price-amount amount">{{product.product_id.special_price_id.strike_price}}<span class="woocommerce-Price-currencySymbol">$</span></span></span>	
+			{% elif product.product_id.special_price_id.sale_status == 0 %}
+			<span class="woocs_special_price_code"><span class="woocommerce-Price-amount amount">{{product.product_id.product_price}}<span class="woocommerce-Price-currencySymbol">$</span></span></span>	
+			{% endif %}
+		</td>
+		
+		<td class="cart-product-quantity" data-title="Quantity">
+				<strong class="product-quantity">× {{product.product_quantity}}</strong>					</td>
+		
+		<td class="cart-product-grand-total" data-title="Total">
+			<span class="woocs_special_price_code"><span class="woocommerce-Price-amount amount">{{product.sub_total}}<span class="woocommerce-Price-currencySymbol">$</span></span></span>					</td>
+		</tr>
+
+	{% endfor %}
+
+
+	<tr class="woocommerce-cart-form__cart-item cart_item">
+
+<td class="romove-item">
+	<a href="http://www.ckthemes.com/flipmart/cart/?remove_item=a8baa56554f96369ab93e4f3bb068c22&amp;_wpnonce=1e54c70b62" class="remove" aria-label="Remove this item" data-product_id="142" data-product_sku=""><i class="fa fa-trash-o"></i></a>					</td>
+
+<td class="cart-image">
+	<a href="http://www.ckthemes.com/flipmart/product/woo-logo-2/"><img width="100" height="100" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/09/lunar-skyelux-mens-running-shoe6885-150x150.jpg" class="attachment-100x100 size-100x100" alt=""></a>					</td>
+
+<td class="cart-product-name-info" data-title="Product">
+	<h4 class="cart-product-description">
+		<a href="http://www.ckthemes.com/flipmart/product/woo-logo-2/">Floral Print Buttoned</a>                        </h4>
+							<div class="rating-reviews">
+		<div class="rating rateit-small" data-rating="4"></div>						</div>
+	
+	<div class="cart-product-info"></div>					</td>
+
+<td class="cart-product-sub-total" data-title="Price">
+	<span class="woocs_special_price_code"><span class="woocommerce-Price-amount amount">720.99<span class="woocommerce-Price-currencySymbol">$</span></span></span>					</td>
+
+<td class="cart-product-quantity" data-title="Quantity">
+		<strong class="product-quantity">× 8</strong>					</td>
+
+<td class="cart-product-grand-total" data-title="Total">
+	<span class="woocs_special_price_code"><span class="woocommerce-Price-amount amount">5,767.92<span class="woocommerce-Price-currencySymbol">$</span></span></span>					</td>
+</tr>
+</tbody>
+<tfoot>
+
+<!-- <tr class="cart-subtotal">
+<th colspan="5">Subtotal</th>
+<td colspan="5"><span class="woocs_special_price_code"><span class="woocommerce-Price-amount amount">5,767.92<span class="woocommerce-Price-currencySymbol">$</span></span></span></td>
+</tr> -->
+
+
+
+
+
+<tr class="shipping">
+<th colspan="5">Shipping</th>
+<td colspan="5" data-title="Shipping">
+		<ul id="shipping_method" class="woocommerce-shipping-methods">
+						<li>
+		<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_flat_rate1" value="flat_rate:1" class="shipping_method" checked="checked"> <label for="shipping_method_0_flat_rate1">Flat rate</label>    					</li>
+						<li>
+		<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_free_shipping2" value="free_shipping:2" class="shipping_method"> <label for="shipping_method_0_free_shipping2">Free shipping</label>    					</li>
+						<li>
+		<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_local_pickup3" value="local_pickup:3" class="shipping_method"> <label for="shipping_method_0_local_pickup3">Local pickup</label>    					</li>
+				</ul>
+</td>
+</tr>
+
+
+
+
+
+									
+
+<tr class="order-total">
+<th colspan="5">Total</th>
+<td colspan="5"><strong><span class="woocs_special_price_code"><span class="woocommerce-Price-amount amount">{{total}}<span class="woocommerce-Price-currencySymbol">$</span></span></span></strong> </td>
+</tr>
+
+
+</tfoot>
+</table>
+
+				
+														</div>
+			</div>
+		</div>
+		
+		<div id="payment" class="woocommerce-checkout-payment woocommerce-billing-fields panel panel-default checkout-step-05">
+
+
+			<div class="panel-heading">
+				<h4 class="unicase-checkout-title">
+				<a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseFive">
+					<span>5</span>Payment Information        </a>
+				</h4>
+			</div>
+
+			<div id="collapseFive" class="panel-collapse collapse">
+				<div class="shipping_address panel-body">
+					<div class="col-md-12"> 
+											<div class="wc_payment_methods payment_methods methods">
+								<div class="wc_payment_method payment_method_bacs radio radio-checkout-unicase">
+			<input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="BANK_TRANSFER" checked="checked" data-order_button_text="">
+
+			<label for="payment_method_bacs">
+				Direct bank transfer 	</label>
+					<div class="payment_box payment_method_bacs" style="">
+					<p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
+				</div>
+			</div>
+			<div class="wc_payment_method payment_method_cheque radio radio-checkout-unicase">
+			<input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="CHEQUE" data-order_button_text="">
+
+			<label for="payment_method_cheque">
+				Check payments 	</label>
+					<div class="payment_box payment_method_cheque" style="display:none;">
+					<p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+				</div>
+			</div>
+			<div class="wc_payment_method payment_method_cod radio radio-checkout-unicase">
+			<input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="COD" data-order_button_text="">
+
+			<label for="payment_method_cod">
+				Cash on delivery 	</label>
+					<div class="payment_box payment_method_cod" style="display:none;">
+					<p>Pay with cash upon delivery.</p>
+				</div>
+			</div>
+			<div class="wc_payment_method payment_method_paypal radio radio-checkout-unicase">
+			<input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="PAYPAL" data-order_button_text="Proceed to PayPal">
+
+			<label for="payment_method_paypal">
+				PayPal <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" alt="PayPal acceptance mark"><a href="https://www.paypal.com/gb/webapps/mpp/paypal-popup" class="about_paypal" onclick="javascript:window.open('https://www.paypal.com/gb/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;">What is PayPal?</a>	</label>
+					<div class="payment_box payment_method_paypal" style="display:none;">
+					<p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
+				</div>
+			</div>
+							</div>
+										<div class="form-row place-order">
+							<noscript>
+								Since your browser does not support JavaScript, or it is disabled, please ensure you click the <em>Update Totals</em> button before placing your order. You may be charged more than the amount stated above if you fail to do so.            			<br/><button type="submit" class="btn-upper btn btn-primary alt" name="woocommerce_checkout_update_totals" value="Update totals">Update totals</button>
+							</noscript>
+					
+								<div class="woocommerce-terms-and-conditions-wrapper">
+							<p class="form-row validate-required radio radio-checkout-unicase">
+						<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+						<input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="terms" id="terms">
+							<span class="woocommerce-terms-and-conditions-checkbox-text">I have read and agree to the website <a href="http://www.ckthemes.com/flipmart/terms-and-condition/" class="woocommerce-terms-and-conditions-link" target="_blank">terms and conditions</a></span>&nbsp;<span class="required">*</span>
+						</label>
+						<input type="hidden" name="terms-field" value="1">
+					</p>
+					</div>
+						
+										
+							<button type="submit" class="btn-upper btn btn-primary alt" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">Place order</button>            
+										
+							<input type="hidden" id="woocommerce-process-checkout-nonce" name="woocommerce-process-checkout-nonce" value="6b62f65ec1"><input type="hidden" name="_wp_http_referer" value="/flipmart/?wc-ajax=update_order_review">            	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+</form>
+
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class=""><div class="container"><div class="row"><div class="col-md-12">            <div class="logo-slider animation fadeInUp animation-visible" id="brands-carousel" data-animation="fadeInUp">
+				<div class="logo-slider-inner">
+					<div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme" style="opacity: 1; display: block;">
+						<div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 3800px; left: 0px; display: block;"><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand1.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand2.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand4.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand3.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand5.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+																			<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand6.png" alt="">
+										
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand1.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand2.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img data-echo="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand4.png" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand4.png" alt="">
+									</a>	
+								</div></div><div class="owl-item" style="width: 190px;"><div class="item m-t-15">
+									<a href="#" title="Flipmart" target="_self" class="image">                						<img data-echo="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand3.png" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/brand3.png" alt="">
+									</a>	
+								</div></div></div></div>
+																
+					<div class="owl-controls clickable"><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"></div></div></div></div>
+				</div>
+						</div>    
+						</div></div></div>
+			</div>
+			</div><!-- .entry-content -->
+
+			</div><!-- #post-## -->
+    	</div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+<!-- ============================================================ -->
+
+<script>
+	function ship_new_address(){
+		var checkBox = document.getElementById("new_ship_add");
+		var text = document.getElementById("id_of_new_add");
+		if (checkBox.checked == true){
+		  text.style.display = "block";
+		} else {
+		   text.style.display = "none";
+		}
+	}
+</script>
+
+{% endblock %}

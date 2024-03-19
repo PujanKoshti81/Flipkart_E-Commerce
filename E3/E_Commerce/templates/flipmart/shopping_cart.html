@@ -1,0 +1,423 @@
+{% extends 'flipmart/home.html' %}
+{% block title %}
+    FLIPMART | Shopping cart
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+{% if request.session.user_id == None  %}
+  <script type="text/javascript">
+  window.location.href="/sign_in/";
+  </script>
+
+  {% endif %}
+
+
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="#">Home</a></li>
+				<li class='active'>Shopping Cart</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div><!-- /.breadcrumb -->
+<h1>{{cart_all.product_id.ratings}}</h1>
+<div class="body-content outer-top-xs">
+	<div class="container">
+		<div class="row ">
+			<div class="shopping-cart">
+				<div class="shopping-cart-table ">
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="cart-romove item">Remove</th>
+					<th class="cart-description item">Image</th>
+					<th class="cart-product-name item">Product Name</th>
+					<!-- <th class="cart-edit item">Edit</th> -->
+					<th class="cart-qty item">Quantity</th>
+					<th class="cart-sub-total item">Price</th>
+					<th class="cart-total last-item">Subtotal</th>
+				</tr>
+			</thead><!-- /thead -->
+			<tfoot>
+
+				<tr>
+					<td colspan="7">
+						<div class="shopping-cart-btn">
+							<span class="">
+								<a href="\home\" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+								<!-- <a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a> -->
+							</span>
+						</div><!-- /.shopping-cart-btn -->
+					</td>
+				</tr>
+			</tfoot>
+			<tbody>
+
+
+				
+				{% for product in cart_all %}
+				<tr>	
+						<td class="romove-item"><button onclick="del_pro_cart({{product.product_id.id}})" title="cancel" class="icon"><i class="fa fa-trash-o"></i></button></td>
+						<td class="cart-image">
+							<a class="entry-thumbnail" href="\details\?product_id={{product.id}}">
+								<img src="{{product.product_id.main_image_id.main_image}}" alt="">
+							</a>
+						</td>
+						<td class="cart-product-name-info">
+							<h4 class='cart-product-description'><a href="\details\?product_id={{product.id}}">{{product.product_id.product_name}}</a></h4>
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="rating rateit-small"></div>
+								</div>
+								<div class="col-sm-8">
+									<div class="reviews">
+										{{product.product_id.avg_review}}-- ---({{product.product_id.review_count}} Reviews)
+									</div>
+								</div>
+							</div><!-- /.row -->
+							<div class="cart-product-info">
+												<span class="product-color">COLOR:<span>PENDING!!!</span></span>
+							</div>
+						</td>
+						<!-- <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td> -->
+						<td class="cart-product-quantity">
+							<div class="quant-input">
+									<div class="arrows">
+									  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+									  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+									</div>
+									<input type="text" onchange="cal_tot_price(this.value,{{product.product_id.id}})" value="{{product.product_quantity}}">
+									
+							  </div>
+						</td>
+						{% if product.product_id.special_price_id.sale_status == 1 %}
+						
+						<td class="cart-product-sub-total"><span class="cart-sub-total-price">${{product.product_id.special_price_id.strike_price}}</span></td>
+						{% elif product.special_price_id.sale_status == 0 %}
+						<!-- {% else %} -->
+						<td class="cart-product-sub-total"><span class="cart-sub-total-price">${{product.product_price}}</span></td>
+						{% endif %}
+						<td class="cart-product-grand-total"><span id="{{product.product_id.id}}" class="cart-grand-total-price">${{product.sub_total}}</span></td>
+					</tr>
+				{% endfor %}
+
+
+				<!-- <tr>
+					<td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+					<td class="cart-image">
+						<a class="entry-thumbnail" href="\details\">
+						    <img src="{% static 'flipmart\images\products\p1.jpg' %}" alt="">
+						</a>
+					</td>
+					<td class="cart-product-name-info">
+						<h4 class='cart-product-description'><a href="\details\">Floral Print Buttoned</a></h4>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="rating rateit-small"></div>
+							</div>
+							<div class="col-sm-8">
+								<div class="reviews">
+									(06 Reviews)
+								</div>
+							</div>
+						</div>
+						<div class="cart-product-info">
+											<span class="product-color">COLOR:<span>Blue</span></span>
+						</div>
+					</td>
+					<td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>
+					<td class="cart-product-quantity">
+						<div class="quant-input">
+				                <div class="arrows">
+				                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+				                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+				                </div>
+				                <input type="text" value="1">
+			              </div>
+		            </td>
+					<td class="cart-product-sub-total"><span class="cart-sub-total-price">$300.00</span></td>
+					<td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span></td>
+				</tr> -->
+				<!-- <tr>
+					<td class="romove-item"><a href="#" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+					<td class="cart-image">
+						<a class="entry-thumbnail" href="\details\">
+						    <img src="{% static 'flipmart\images\products\p2.jpg' %}" alt="">
+						</a>
+					</td>
+					<td class="cart-product-name-info">
+						<h4 class='cart-product-description'><a href="\details\">Floral Print Buttoned</a></h4>
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="rating rateit-small"></div>
+							</div>
+							<div class="col-sm-8">
+								<div class="reviews">
+									(06 Reviews)
+								</div>
+							</div>
+						</div>
+						<div class="cart-product-info">
+						<span class="product-color">COLOR:<span>Pink</span></span>
+						</div>
+					</td>
+					<td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>
+					<td class="cart-product-quantity">
+						<div class="cart-quantity">
+							<div class="quant-input">
+				                <div class="arrows">
+				                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
+				                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
+				                </div>
+				                <input type="text" value="1">
+			              </div>
+			            </div>
+		            </td>
+					<td class="cart-product-sub-total"><span class="cart-sub-total-price">$300.00</span></td>
+					<td class="cart-product-grand-total"><span class="cart-grand-total-price">$300.00</span></td>
+				</tr> -->
+			</tbody><!-- /tbody -->
+		</table><!-- /table -->
+	</div>
+</div><!-- /.shopping-cart-table -->				<div class="col-md-4 col-sm-12 estimate-ship-tax">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<span class="estimate-title">Estimate shipping and tax</span>
+					<p>Enter your destination to get shipping and tax.</p>
+				</th>
+			</tr>
+		</thead><!-- /thead -->
+		<tbody>
+				<tr>
+					<td>
+						<div class="form-group">
+							<label class="info-title control-label">Country <span>*</span></label>
+							<select class="form-control unicase-form-control selectpicker">
+								<option>--Select options--</option>
+								<option>India</option>
+								<option>SriLanka</option>
+								<option>united kingdom</option>
+								<option>saudi arabia</option>
+								<option>united arab emirates</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="info-title control-label">State/Province <span>*</span></label>
+							<select class="form-control unicase-form-control selectpicker">
+								<option>--Select options--</option>
+								<option>TamilNadu</option>
+								<option>Kerala</option>
+								<option>Andhra Pradesh</option>
+								<option>Karnataka</option>
+								<option>Madhya Pradesh</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class="info-title control-label">Zip/Postal Code</label>
+							<input type="text" class="form-control unicase-form-control text-input" placeholder="">
+						</div>
+						<div class="pull-right">
+							<button type="submit" class="btn-upper btn btn-primary">GET A QOUTE</button>
+						</div>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</div><!-- /.estimate-ship-tax -->
+
+<div class="col-md-4 col-sm-12 estimate-ship-tax">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<span class="estimate-title">Discount Code</span>
+					<p>Enter your coupon code if you have one..</p>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+				<tr>
+					<td>
+						<div class="form-group">
+							<input type="text" class="form-control unicase-form-control text-input" placeholder="You Coupon..">
+						</div>
+						<div class="clearfix pull-right">
+							<button type="submit" class="btn-upper btn btn-primary">APPLY COUPON</button>
+						</div>
+					</td>
+				</tr>
+		</tbody><!-- /tbody -->
+	</table><!-- /table -->
+</div><!-- /.estimate-ship-tax -->
+<div class="col-md-4 col-sm-12 cart-shopping-total">
+        <div class="cart_totals ">
+
+	
+	<table class="shop_table shop_table_responsive table text-left">
+        <thead>
+            <tr>
+                <th>	
+<div class="shipping cart-grand-total row">
+    <div class="col-sm-4">Shipping</div>
+			<div class="col-sm-8 text-right" data-title="Shipping">
+					<ul id="shipping_method" class="woocommerce-shipping-methods">
+									<li>
+						<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_flat_rate1" value="flat_rate:1" class="shipping_method" checked="checked"><label for="shipping_method_0_flat_rate1">Flat rate</label>					</li>
+									<li>
+						<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_free_shipping2" value="free_shipping:2" class="shipping_method"><label for="shipping_method_0_free_shipping2">Free shipping</label>					</li>
+									<li>
+						<input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_local_pickup3" value="local_pickup:3" class="shipping_method"><label for="shipping_method_0_local_pickup3">Local pickup</label>					</li>
+							</ul>
+							<p class="woocommerce-shipping-destination">
+					Shipping to <strong>India</strong>. 				</p>
+				</div>
+			</div>
+					<div class="order-total cart-grand-total row">
+                        <div class="col-sm-4">Total:</div>
+            			<div class="col-sm-8" data-title="Total"><strong><span class="woocs_special_price_code"><span class="woocommerce-Price-currencySymbol">$</span><span id="grand_total" class="woocommerce-Price-amount amount">{{total_amount}}</span></span></strong> </div>
+            		</div>
+                    
+        		</th>
+            </tr>
+            
+    		        </thead>
+        
+        <tbody>
+			<tr>
+				<td>
+					<div class="cart-checkout-btn pull-right">
+                        <a href="\checkout\" class="btn btn-primary checkout-btn">
+                        	Proceed to checkout                        </a>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+    
+	
+</div>
+    </div>
+<!-- /.cart-shopping-total -->			</div><!-- /.shopping-cart -->
+		</div> <!-- /.row -->
+		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
+<div id="brands-carousel" class="logo-slider wow fadeInUp">
+
+		<div class="logo-slider-inner">	
+			<div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
+				<div class="item m-t-15">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand1.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item m-t-10">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand2.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand3.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand4.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand5.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand6.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand2.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand4.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand1.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+
+				<div class="item">
+					<a href="#" class="image">
+						<img data-echo="{% static 'flipmart\images/brands/brand5.png' %}" src="{% static 'flipmart\images\blank.gif' %}" alt="">
+					</a>	
+				</div><!--/.item-->
+		    </div><!-- /.owl-carousel #logo-slider -->
+		</div><!-- /.logo-slider-inner -->
+	
+</div><!-- /.logo-slider -->
+<!-- ============================================== BRANDS CAROUSEL : END ============================================== -->	</div><!-- /.container -->
+</div><!-- /.body-content -->
+
+
+<script>
+function cal_tot_price(qty,ID)
+{
+
+	$.ajax({
+		url:'/update_cart/',
+		method:'GET',
+		data:{"quantity":qty,"id":ID,csrfmiddlewaretoken:'{{csrf_token}}'},
+		dataType:'JSON',
+		success:function(data){
+			
+			document.getElementById(data.id).textContent = '$'+data.sub_total;
+			document.getElementById("grand_total").textContent = data.grand_total;
+		},
+		failure:function(data){}
+	})
+}
+
+
+function del_pro_cart(p_id,user_id){
+	alert(p_id);
+	$.ajax({
+	  url:'/delete_product_cart/',
+	  method:'GET',
+	  data:{"p_id":p_id,csrfmiddlewaretoken:'{{ csrf_token }}',},
+	  dataType:'JSON',
+	  success:function(data){
+		if(data.done){
+			alert('item removed refresh the page ');
+		}
+		else{
+			alert("didnt remove");
+		}
+	   },
+	  failure:function(data){}
+  
+	})
+  }
+  </script>
+
+
+{% endblock %}

@@ -1,0 +1,233 @@
+{% extends 'flipmart/home.html' %}
+{% block title %}
+    FLIPMART | Product Comparison
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+{% if request.session.user_id == None  %}
+  <script type="text/javascript">
+  window.location.href="/sign_in/";
+  </script>
+
+  {% endif %}
+
+
+
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="\home\">Home</a></li>
+				<li class='active'>Compare</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div><!-- /.breadcrumb -->
+
+<div class="body-content outer-top-xs">
+	<div class="container">
+    <div class="product-comparison">
+		<div>
+			<h1 class="page-title text-center heading-title">Product Comparison</h1>
+			<div class="table-responsive">
+				<table class="table compare-table inner-top-vs">
+					<tr>
+						<th>Products</th>
+						{% for product in compare %}
+							<td>
+								<div class="product">
+									<div class="product-image">
+										<div class="image">
+											<a href="\details\?product_id={{product.product_id.id}}">
+												<img alt="" src="{{product.product_id.main_image_id.main_image}}">
+											</a>
+										</div>
+	
+										<div class="product-info text-left">
+											<h3 class="name"><a href="\details\?product_id={{product.product_id.id}}">{{product.product_id.product_name}}</a></h3>
+											<div class="action">
+												<a class="lnk btn btn-primary" onclick="add_to_cart({{product.product_id.id}},{{request.session.user_id}})" href="#">Add To Cart</a>
+											</div>
+	
+										</div>
+									</div>
+								</div>
+							</td>
+						{% endfor %}
+						<td>
+							<div class="product">
+								<div class="product-image">
+									<div class="image">
+										<a href="\details\">
+										    <img alt="" src="{% static 'flipmart\images\products\p1.jpg' %}">
+										</a>
+									</div>
+
+									<div class="product-info text-left">
+										<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+										<div class="action">
+										    <a class="lnk btn btn-primary" href="#">Add To Cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</td>
+
+
+						<!-- <td>
+							<div class="product">
+								<div class="product-image">
+									<div class="image">
+										<a href="\details\">
+										    <img alt="" src="{% static 'flipmart\images\products\p4.jpg' %}">
+										</a>
+									</div>
+
+									<div class="product-info text-left">
+										<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+										<div class="action">
+										    <a class="lnk btn btn-primary" href="#">Add To Cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</td>
+
+						<td>
+							<div class="product">
+								<div class="product-image">
+									<div class="image">
+										<a href="\details\">
+										    <img alt="" src="{% static 'flipmart\images\products\p5.jpg' %}">
+										</a>
+									</div>
+
+									<div class="product-info text-left">
+										<h3 class="name"><a href="\details\">Floral Print Buttoned</a></h3>
+										<div class="action">
+										    <a class="lnk btn btn-primary" href="#">Add To Cart</a>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</td> -->
+					</tr>
+
+					<tr>
+						<th>Price</th>
+						
+						{% for product in compare %}
+							<td>
+								{% if product.product_id.special_price_id.sale_status == 1 %}
+								<div class="product-price">
+									<span class="price"> $ {{product.product_id.special_price_id.strike_price}} </span>
+									<span class="price-before-discount">$ {{product.product_id.product_price}}</span>
+								</div>
+								{% elif cart.product_id.special_price_id.sale_status == 0 %}
+								<div class="product-price">
+									<span class="price"> $ {{product.product_id.product_price}} </span>
+								</div>
+								{% endif %}
+							</td>
+	
+						{% endfor %}
+						<td>
+							<div class="product-price">
+								<span class="price"> $300.00 </span>
+								<span class="price-before-discount">$500.00</span>
+							</div>
+						</td>
+
+
+						<!-- <td>
+							<div class="product-price">
+								<span class="price"> $400.00 </span>
+								<span class="price-before-discount">$500.00</span>
+							</div>
+						</td>
+
+						<td>
+							<div class="product-price">
+								<span class="price"> $3600.00 </span>
+								<span class="price-before-discount">$500.00</span>
+							</div>
+						</td> -->
+					</tr>
+
+					<tr>
+						<th>Description</th>
+						{% for product in compare %}
+							<td><p class="text">{{product.product_id.contents_id.main_description}}<p><p>{{product.product_id.contents_id.full_description}}</p></p></td>
+						{% endfor %}
+						<td><p class="text">Proin semper eros ac posuere ultrices. Nulla quis mi in risus volutpat blandit vestibulum in lorem. In euismod laoreet sapien vel gravida.  Proin sem per eros ac posuere ultrices. Nulla quis mi in risus.<p></p></td>
+						<!-- <td><p class="text">Proin semper eros ac posuere ultrices. Nulla quis mi in risus volutpat blandit vestibulum in lorem. In euismod laoreet sapien vel gravida.<p></p></td>
+						<td><p class="text">Proin semper eros ac posuere ultrices. Nulla quis mi in risus volutpat blandit vestibulum in lorem. In euismod laoreet sapien vel gravida.  Proin sem per eros ac posuere ultrices. Nulla quis mi in risus.<p></p></td>  -->
+					</tr>
+
+					<tr>
+							<th>Ratings</th>
+							{% for product in compare %}
+								<td><p class="text"> Rating : {{product.product_id.avg_review}}  out of 5<p></p></td>
+							{% endfor %}
+							<td><p class="text">DEMO DDEOM DEOmo DEMO.<p></p></td>
+							<!-- <td><p class="text">Proin semper eros ac posuere ultrices. Nulla quis mi in risus volutpat blandit vestibulum in lorem. In euismod laoreet sapien vel gravida.<p></p></td>
+							<td><p class="text">Proin semper eros ac posuere ultrices. Nulla quis mi in risus volutpat blandit vestibulum in lorem. In euismod laoreet sapien vel gravida.  Proin sem per eros ac posuere ultrices. Nulla quis mi in risus.<p></p></td>  -->
+						</tr>
+
+					<tr>
+						 <th>Availability</th>
+						 {% for product in compare %}
+						 <td><p class="in-stock">In Stock</p></td>
+						 {% endfor %}
+	                     <td><p class="in-stock">In Stock</p></td>
+	                     <!-- <td><p class="in-stock">In Stock</p></td>
+	                     <td><p class="in-stock">In Stock</p></td> -->
+					</tr>
+
+					<tr>
+						<th>Remove</th>
+						{% for product in compare %}
+						<td class='text-center'><a href="#" onclick="del_pro_compare({{product.product_id.id}})" class="remove-icon"><i class="fa fa-times"></i></a></td>
+						 {% endfor %}
+						<td class='text-center'><a href="#" class="remove-icon"><i class="fa fa-times"></i></a></td>
+						<!-- <td class='text-center'><a href="#" class="remove-icon"><i class="fa fa-times"></i></a></td>
+						<td class='text-center'><a href="#" class="remove-icon"><i class="fa fa-times"></i></a></td> -->
+					</tr>
+				</table>
+			</div>
+            </div>
+		</div>
+	</div>
+</div>
+
+<script>
+function del_pro_compare(p_id){
+
+		$.ajax({
+		url:'/del_pro_compare/',
+		method:'GET',
+		data:{"product_id":p_id, csrfmiddlewaretoken:'{{ csrf_token }}'},
+		dataType:'JSON',
+		success:function(data){
+		  if(data.done){
+			alert(data.response);
+		  }
+		  else{
+			alert('failed to remove from compare');
+		  }
+		},
+		failure:function(data){}
+	  });
+	  }
+
+
+</script>
+
+
+{% endblock %}

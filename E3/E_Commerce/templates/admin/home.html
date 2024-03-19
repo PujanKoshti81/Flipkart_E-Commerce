@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+   {% load static %}
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Color Admin | Dashboard v2</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+
+	<!--------CHECKBOX Compiled and minified CSS ----------------------->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" /> -->
+
+
+
+	<!-- ---------------sweet alert------------------------------- -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+	<!-- ================== BEGIN BASE CSS STYLE ================== -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+
+
+
+	<link href="{% static 'admin/plugins/jquery-ui/jquery-ui.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/bootstrap/4.1.3/css/bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/font-awesome/5.3/css/all.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/animate/animate.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/css/default/style.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/css/default/style-responsive.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/css/default/theme/default.css' %}" rel="stylesheet" id="theme" />
+	<!-- ================== END BASE CSS STYLE ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+	<link href="{% static 'admin/plugins/jquery-jvectormap/jquery-jvectormap.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/bootstrap-calendar/css/bootstrap_calendar.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/gritter/css/jquery.gritter.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/nvd3/build/nv.d3.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" />
+	<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+	<!-- ================== BEGIN DATA TABLE STYLE ================== -->
+	<link href="{% static 'admin/plugins/DataTables/media/css/dataTables.bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/DataTables/extensions/Select/css/select.bootstrap.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css' %}" rel="stylesheet" />
+
+	
+	<!-- ================== END DATA TABLE STYLE ================== -->
+
+
+<!-- 	
+	<link rel="stylesheet" href="http://ionden.com/a/plugins/ion.rangeSlider/static/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.css">
+ -->
+
+
+
+		<!-- ================== BANNERS STYLE ================== -->
+		<link href="{% static 'admin/plugins/isotope/isotope.css' %}" rel="stylesheet" />
+		<link href="{% static 'admin/plugins/lightbox/css/lightbox.css' %}" rel="stylesheet" />
+		<!-- ================== END  STYLE ================== -->
+
+	<!-- ================== BEGIN FILE UPLOAD CSS STYLE ================== -->
+	<link href="{% static 'admin/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/jquery-file-upload/css/jquery.fileupload.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/jquery-file-upload/css/jquery.fileupload-ui.css' %}" rel="stylesheet" />
+	<!-- ================== ========================= ================== -->
+
+	<!-- ================== FORM PLUGIN STYLE ================== -->
+	<!-- ================== COLOR COMBINATION STYLE ================== -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/ionRangeSlider/css/ion.rangeSlider.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/ionRangeSlider/css/ion.rangeSlider.skinNice.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/password-indicator/css/password-indicator.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-combobox/css/bootstrap-combobox.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-select/bootstrap-select.min.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/jquery-tag-it/css/jquery.tagit.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-daterangepicker/daterangepicker.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/select2/dist/css/select2.min.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-eonasdan-datetimepicker/build/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/bootstrap-colorpalette/css/bootstrap-colorpalette.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css' %}" rel="stylesheet" /> -->
+	<!-- <link href="{% static 'admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css' %}" rel="stylesheet" /> -->
+	<!-- ================== END PAGE LEVEL STYLE ================== -->
+
+
+
+
+	<!-- ================== BEGIN BASE JS ================== -->
+	<script src="{% static 'admin/plugins/pace/pace.min.js' %}"></script>
+	<!-- ================== END BASE JS ================== -->
+
+	<!-- ================== FORM SLIDER+ SWITCH CSS STYLE ================== -->	
+	<link href="{% static 'admin/plugins/switchery/switchery.min.css' %}" rel="stylesheet" />
+	<link href="{% static 'admin/plugins/powerange/powerange.min.css' %}" rel="stylesheet" />
+	<!-- ================== END PAGE CSS STYLE ================== -->
+
+	<!-- ================== BEGIN PAGE CSS ================== -->
+	<link href="{% static 'admin/plugins/summernote/summernote.css' %}" rel="stylesheet" />
+	<!-- ================== END PAGE CSS ================== -->		
+
+<!-- ---------------------------------------------------------------------------------------------- -->
+
+<!-- <script type="text/javascript" src="{% static 'admin/particles.js' %}"></script> -->
+<!-- <script type="text/javascript" src="{% static 'admin/js/particlesjs-config.js' %}"></script>
+
+<script src="{% static 'admin/js/particles.min.js' %}"></script> -->
+
+
+
+</head>
+
+<body  class="  pace-done"><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+	<div class="pace-progress-inner"></div>
+  </div>
+  <div class="pace-activity"></div></div>
+	  <!-- begin #page-loader -->
+	  <div id="page-loader" class="fade show d-none"><span class="spinner"></span></div>
+	  <!-- end #page-loader -->
+	  
+	  <!-- begin #page-container -->
+	  <div id="page-container" class="fade page-sidebar-fixed page-header-fixed show">
+		  <!-- begin #header -->
+		  <div id="header" class="header navbar-default">
+			  <!-- begin navbar-header -->
+			  <div class="navbar-header">
+				  <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> <b>E-</b>Commerce</a>
+				  <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+					  <span class="icon-bar"></span>
+				  </button>
+			  </div>
+			  <!-- end navbar-header -->
+			  
+			  <!-- begin header-nav -->
+			  <ul class="navbar-nav navbar-right">
+				  <li>
+					  <form class="navbar-form">
+						  <div class="form-group">
+							  <input type="text" class="form-control" placeholder="Enter keyword">
+							  <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+						  </div>
+					  </form>
+				  </li>
+				  <li class="dropdown">
+					  <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
+						  <i class="fa fa-bell"></i>
+						  <span class="label">5</span>
+					  </a>
+					  <ul class="dropdown-menu media-list dropdown-menu-right">
+						  <li class="dropdown-header">NOTIFICATIONS (5)</li>
+						  <li class="media">
+							  <a href="javascript:;">
+								  <div class="media-left">
+									  <i class="fa fa-bug media-object bg-silver-darker"></i>
+								  </div>
+								  <div class="media-body">
+									  <h6 class="media-heading">Server Error Reports <i class="fa fa-exclamation-circle text-danger"></i></h6>
+									  <div class="text-muted f-s-11">3 minutes ago</div>
+								  </div>
+							  </a>
+						  </li>
+						  <li class="media">
+							  <a href="javascript:;">
+								  <div class="media-left">
+									  <img src="{% static 'admin/img/user/user-1.jpg' %}" class="media-object" alt="">
+									  <i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
+								  </div>
+								  <div class="media-body">
+									  <h6 class="media-heading">John Smith</h6>
+									  <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+									  <div class="text-muted f-s-11">25 minutes ago</div>
+								  </div>
+							  </a>
+						  </li>
+						  <li class="media">
+							  <a href="javascript:;">
+								  <div class="media-left">
+									  <img src="{% static 'admin/img/user/user-2.jpg' %}" class="media-object" alt="">
+									  <i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
+								  </div>
+								  <div class="media-body">
+									  <h6 class="media-heading">Olivia</h6>
+									  <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
+									  <div class="text-muted f-s-11">35 minutes ago</div>
+								  </div>
+							  </a>
+						  </li>
+						  <li class="media">
+							  <a href="javascript:;">
+								  <div class="media-left">
+									  <i class="fa fa-plus media-object bg-silver-darker"></i>
+								  </div>
+								  <div class="media-body">
+									  <h6 class="media-heading"> New User Registered</h6>
+									  <div class="text-muted f-s-11">1 hour ago</div>
+								  </div>
+							  </a>
+						  </li>
+						  <li class="media">
+							  <a href="javascript:;">
+								  <div class="media-left">
+									  <i class="fa fa-envelope media-object bg-silver-darker"></i>
+									  <i class="fab fa-google text-warning media-object-icon f-s-14"></i>
+								  </div>
+								  <div class="media-body">
+									  <h6 class="media-heading"> New Email From John</h6>
+									  <div class="text-muted f-s-11">2 hour ago</div>
+								  </div>
+							  </a>
+						  </li>
+						  <li class="dropdown-footer text-center">
+							  <a href="javascript:;">View more</a>
+						  </li>
+					  </ul>
+				  </li>
+				  <li class="dropdown navbar-user">
+					  <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+						  <img src="{% static 'admin/img/user/user-13.jpg' %}" alt=""> 
+						  <span class="d-none d-md-inline">Adam Schwartz</span> <b class="caret"></b>
+					  </a>
+					  <div class="dropdown-menu dropdown-menu-right">
+						  <a href="javascript:;" class="dropdown-item">Edit Profile</a>
+						  <a href="javascript:;" class="dropdown-item"><span class="badge badge-danger pull-right">2</span> Inbox</a>
+						  <a href="javascript:;" class="dropdown-item">Calendar</a>
+						  <a href="javascript:;" class="dropdown-item">Setting</a>
+						  <div class="dropdown-divider"></div>
+						  <a href="javascript:;" class="dropdown-item">Log Out</a>
+					  </div>
+				  </li>
+			  </ul>
+			  <!-- end header navigation right -->
+		  </div>
+		  <!-- end #header -->
+		  
+		  	<!-- begin #sidebar -->
+		<div id="sidebar" class="sidebar">
+				<!-- begin sidebar scrollbar -->
+				<div data-scrollbar="true" data-height="100%">
+					<!-- begin sidebar user -->
+					<ul class="nav">
+						<li class="nav-profile">
+							<a href="javascript:;" data-toggle="nav-profile">
+								<div class="cover with-shadow"></div>
+								<div class="image">
+									<img src="{% static 'admin/img/user/user-13.jpg' %}" alt="" />
+								</div>
+								<div class="info">
+									<b class="caret pull-right"></b>
+									Sean Ngu
+									<small>Front end developer</small>
+								</div>
+							</a>
+						</li>
+						<li>
+							<ul class="nav nav-profile">
+								<li><a href="javascript:;"><i class="fa fa-cog"></i> Settings</a></li>
+								<li><a href="javascript:;"><i class="fa fa-pencil-alt"></i> Send Feedback</a></li>
+								<li><a href="javascript:;"><i class="fa fa-question-circle"></i> Helps</a></li>
+							</ul>
+						</li>
+					</ul>
+					<!-- end sidebar user -->
+					<!-- begin sidebar nav -->
+					<ul class="nav">
+						<li class="nav-header">Navigation</li>
+						<li class="has-sub ">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-home"></i>
+								<span>Dashboard</span>
+							</a>
+							<ul class="sub-menu">
+								<li class="active"><a href="/dashboard/">Dashboard </a></li>
+							</ul>
+						</li>
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-list-ol"></i>
+								<span>Forms <span class="label label-theme m-l-5">NEW</span></span> 
+							</a>
+							<ul class="sub-menu">
+								<li><a href="/product_form/"> Product Form<i class="fa fa-paper-plane text-theme m-l-5"></i></a></li>
+								
+							</ul>
+						</li>
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-list-ol"></i>
+								<span>Management</span>
+							</a>
+							<ul class="sub-menu">
+								<!-- <li><a href="table_basic.html">Basic Tables</a></li> -->
+								<li class="has-sub">
+								  <a href="javascript:;"><b class="caret pull-right"></b> Managed Tables</a>
+									<ul class="sub-menu">
+										<li><a href="/catalog_management/">Catalog Management</a></li>
+										<li><a href="/customers_details/">User Management</a></li>
+										<li><a href="/order_management/">Order Management</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-star"></i> 
+								<span>Categories</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="/Sub_Categories/">Sub Categories</a></li></ul>
+						</li>
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-envelope"></i>
+								<span>Products</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="/product_reviews/">Product Reviews</a></li>
+								<li><a href="/favourite_product/">Favourite Products </a></li>
+								<li class="has-sub">
+									<a href="javascript:;"><b class="caret pull-right"></b> Sample </a>
+									<ul class="sub-menu">
+										<li><a href="javascript:;">Sample</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-chart-pie"></i>
+								<span>Tables</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="/product_table/">Product Tables</a></li>
+								<li class="has-sub">
+									<a href="javascript:;"><b class="caret pull-right"></b> Sample Table</a>
+									<ul class="sub-menu">
+										<li><a href="/table2/">Sample</a></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-map"></i>
+								<span>Banners</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="/banners/">Banners</a></li>
+							</ul>
+						</li>
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-image"></i>
+								<span>Color Combination</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="/color_combination/">
+									<b class="caret"></b>
+									<!-- <i class="fa fa-th-large"></i> -->
+									<i class="fa fa-paint-brush"></i>
+									<span>Color combination</span>
+									</a>
+								</li>
+								
+							</ul>
+						</li>
+						<li class="has-sub">
+							<a href="javascript:;">
+								<b class="caret"></b>
+								<i class="fa fa-wrench"></i>
+								<span>Page Editing</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="/page_editing/">Page Editing </a></li>
+							</ul>
+						</li>
+	
+	
+	
+				
+						<li class="has-sub">
+							<a href="javascript:;">
+								<span class="badge pull-right">10</span>
+								<i class="fa fa-hdd"></i> 
+								<span>Temp</span>
+							</a>
+							<ul class="sub-menu">
+								<li><a href="#">Inbox</a></li>
+								<li><a href="#">Compose</a></li>
+								<li><a href="#">Detail</a></li>
+							</ul>
+						</li>
+						
+						<!-- begin sidebar minify button -->
+						<li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
+						<!-- end sidebar minify button -->
+					</ul>
+					<!-- end sidebar nav -->
+				</div>
+				<!-- end sidebar scrollbar -->
+			</div>
+			<div class="sidebar-bg"></div>
+			<!-- end #sidebar -->
+		  
+		  <!-- begin #content -->
+		  <div id="content particles-js' %}"  class="content">
+			  
+			  
+										
+				{% block content %}
+					
+					
+
+				{% endblock %}
+		
+		  </div>
+		  <!-- end #content -->
+		  
+		 
+		  
+		  <!-- begin scroll to top btn -->
+		  <a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
+		  <!-- end scroll to top btn -->
+	  </div>
+	  <!-- end page container -->
+
+
+
+	 
+
+	   	  <!-- scripts -->
+	 
+	 
+		
+
+	  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js' %}"></script> -->
+
+
+
+	  <!-- ================== BEGIN BASE JS ================== -->
+	  <script src="{% static 'admin/plugins/jquery/jquery-3.3.1.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js' %}"></script>
+	  <!--[if lt IE 9]>
+		  <script src="../{% static 'admin/crossbrowserjs/html5shiv.js' %}"></script>
+		  <script src="../{% static 'admin/crossbrowserjs/respond.min.js' %}"></script>
+		  <script src="../{% static 'admin/crossbrowserjs/excanvas.min.js' %}"></script>
+	  <![endif]-->
+	  <script src="{% static 'admin/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/js-cookie/js.cookie.js' %}"></script>
+	  <script src="{% static 'admin/js/theme/default.min.js' %}"></script>
+	  <script src="{% static 'admin/js/apps.min.js' %}"></script>
+	  <!-- ================== END BASE JS ================== -->
+	  
+	  <!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	  <script src="{% static 'admin/plugins/d3/d3.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/nvd3/build/nv.d3.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-jvectormap/jquery-jvectormap.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js' %}"></script>
+	  <script src="{% static 'admin/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/gritter/js/jquery.gritter.js' %}"></script>
+		<script src="{% static 'admin/plugins/flot/jquery.flot.min.js' %}"></script>
+		<script src="{% static 'admin/plugins/flot/jquery.flot.min.js' %}"></script>
+		<script src="{% static 'admin/plugins/flot/jquery.flot.time.min.js' %}"></script>
+		<script src="{% static 'admin/plugins/flot/jquery.flot.resize.min.js' %}"></script>
+		<script src="{% static 'admin/plugins/flot/jquery.flot.pie.min.js' %}"></script>
+		<script src="{% static 'admin/plugins/sparkline/jquery.sparkline.js' %}"></script>
+		<script src="{% static 'admin/plugins/jquery-jvectormap/jquery-jvectormap.min.js' %}"></script>
+		<script src="{% static 'admin/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+		<script src="{% static 'admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+	  <!-- <script src="{% static 'admin/plugins/gritter/js/jquery.gritter.js' %}"></script> -->
+	  
+	  <!-- ================== END PAGE LEVEL JS ================== -->
+
+
+
+
+	  <!-- ================== END SELECT DATA TABLE JS ================== -->
+
+	<script src="{% static 'admin/plugins/DataTables/media/js/jquery.dataTables.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/media/js/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Select/js/dataTables.select.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'admin/js/demo/table-manage-select.demo.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/media/js/jquery.dataTables.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/media/js/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/jszip.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'admin/js/demo/table-manage-buttons.demo.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/highlight/highlight.common.js' %}"></script>
+
+	  <!-- ================== END SELECT DATA TABLE JS ================== -->
+	  
+
+
+	  <!-- ================== SELECT FILE UPLOAD JS ================== -->
+
+
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/vendor/tmpl.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/vendor/load-image.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.iframe-transport.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.fileupload.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.fileupload-process.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.fileupload-image.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.fileupload-audio.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.fileupload-video.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.fileupload-validate.js' %}"></script>
+	  <script src="{% static 'admin/plugins/jquery-file-upload/js/jquery.fileupload-ui.js' %}"></script>
+	  <!-- ================== ========================= ================== -->
+	<!-- ================== CATEGORY TABLE JS ================== -->
+	<script src="{% static 'admin/plugins/highlight/highlight.common.js' %}"></script>
+	<script src="{% static 'admin/js/demo/render.highlight.js' %}"></script>
+	<!-- ================== -------------------- ================== -->
+
+	<!-- ================== Modal for adding Caategory JS ================== -->
+	<script src="{% static 'admin/plugins/gritter/js/jquery.gritter.js' %}"></script>
+	<script src="{% static 'admin/plugins/bootstrap-sweetalert/sweetalert.min.js' %}"></script>
+	<script src="{% static 'admin/js/demo/ui-modal-notification.demo.min.js' %}"></script>
+	<!-- ================== ==================== ================== -->
+
+
+		<!-- ================== BANNERS  JS ================== -->
+		<script src="{% static 'admin/plugins/isotope/jquery.isotope.min.js' %}"></script>
+		<script src="{% static 'admin/plugins/lightbox/js/lightbox.min.js' %}"></script>
+		<script src="{% static 'admin/js/demo/gallery.demo.min.js' %}"></script>
+		<!-- ================== END  JS ================== -->
+
+
+
+	
+<!-- ================== FORM PLUGIN LEVEL JS ================== -->
+
+<!-- ================== COLOR COMBINATION LEVEL JS ================== -->
+<!-- <script src="http://ionden.com/a/plugins/ion.rangeSlider/static/js/ion-rangeSlider/ion.rangeSlider.js"></script> -->
+<!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.js"></script> -->
+
+<!-- <script src="{% static 'admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/masked-input/masked-input.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/password-indicator/js/password-indicator.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-combobox/js/bootstrap-combobox.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-select/bootstrap-select.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/jquery-tag-it/js/tag-it.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-daterangepicker/moment.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-daterangepicker/daterangepicker.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/select2/dist/js/select2.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-show-password/bootstrap-show-password.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js' %}"></script> -->
+<!-- <script src="{% static 'admin/plugins/clipboard/clipboard.min.js' %}"></script> -->
+<!-- <script src="{% static 'admin/js/demo/form-plugins.demo.min.js' %}"></script> -->
+<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+	<!-- ================== FORM SLIDER + SWITCHER JS ================== -->
+	<!-- <script src="{% static 'admin/plugins/switchery/switchery.min.js' %}"></script> -->
+	<!-- <script src="{% static 'admin/plugins/powerange/powerange.min.js' %}"></script> -->
+	<!-- <script src="{% static 'admin/js/demo/form-slider-switcher.demo.min.js' %}"></script> -->
+	<!-- ================== END PAGE LEVEL JS ================== -->
+
+	<!-- ================== Page Editor JS ================== -->
+	<!-- <script src="{% static 'admin/plugins/summernote/summernote.min.js' %}"></script>
+	<script src="{% static 'admin/js/demo/form-summernote.demo.min.js' %}"></script> -->
+	<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+	</script>  -->
+	<script src="{% static 'admin/js/dashboard.min.js' %}"></script>
+
+
+<!-- ===========================	   From Dashboard		================================= -->
+	<!-- ================== BEGIN BASE JS ================== -->
+	<!-- <script src="{% static 'admin/plugins/jquery/jquery-1.9.1.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/jquery/jquery-migrate-1.1.0.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/jquery-ui/ui/minified/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/bootstrap/js/bootstrap.min.js' %}"></script> -->
+	<!--[if lt IE 9]>
+		<script src="{% static 'admin/crossbrowserjs/html5shiv.js' %}"></script>
+		<script src="{% static 'admin/crossbrowserjs/respond.min.js' %}"></script>
+		<script src="{% static 'admin/crossbrowserjs/excanvas.min.js' %}"></script>
+	<![endif]-->
+	<!-- <script src="{% static 'admin/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/jquery-cookie/jquery.cookie.js' %}"></script> -->
+	<!-- ================== END BASE JS ================== -->
+	
+	<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+	<!-- <script src="{% static 'admin/plugins/gritter/js/jquery.gritter.js' %}"></script> -->
+	<!-- <script src="{% static 'admin/plugins/flot/jquery.flot.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/flot/jquery.flot.time.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/flot/jquery.flot.resize.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/flot/jquery.flot.pie.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/sparkline/jquery.sparkline.js' %}"></script>
+	<script src="{% static 'admin/plugins/jquery-jvectormap/jquery-jvectormap.min.js' %}"></script>
+	<script src="{% static 'admin/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+	<script src="{% static 'admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js' %}"></script>
+	<script src="{% static 'admin/js/apps.min.js' %}"></script> -->
+	<!-- ================== END PAGE LEVEL JS ================== -->
+
+
+
+
+<!-- ============================================================================================= -->
+
+
+	<script>
+		$(document).ready(function() {
+			//FormPlugins.init();
+			//TableManageCombine.init();
+			App.init();
+			Dashboard.init();
+			TableManageButtons.init();
+
+		});
+	</script>
+<!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-53034621-1', 'auto');
+  ga('send', 'pageview');
+
+</script> -->
+
+		 <!------------- CHECKBOX Compiled and minified JavaScript ---------------------------------->
+		 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js' %}"></script> -->
+
+<!-- 	  
+	  <script>
+			$(document).ready(function() {
+				App.init();
+				
+				//TreeView.init();
+				// FormSummernote.init();
+			});
+		</script> -->
+  
+  </html>

@@ -1,0 +1,150 @@
+{% extends 'admin/home.html' %}
+{% block title %}
+<h1 class="page-header">Color Combination <small>to set colors on homepage </small></h1>
+
+{% endblock %}
+
+{% block content %}
+<!-- {% load static %}
+{% load staticfiles %} -->
+
+
+	
+<div class="col-lg-6 ui-sortable">
+        
+        <!-- begin panel -->
+        <div class="panel panel-inverse" data-sortable-id="form-plugins-11">
+            <!-- begin panel-heading -->
+            <div class="panel-heading ui-sortable-handle">
+                <div class="panel-heading-btn">
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                    <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+                </div>
+                <h4 class="panel-title"><span class="label label-success pull-left m-r-10">NEW</span> jQuery Simple Colorpicker</h4>
+            </div>
+            <!-- end panel-heading -->
+            <!-- begin panel-body -->
+            <div class="panel-body panel-form">
+                <form class="form-horizontal form-bordered" id="color_theme" >
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">Header</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <select name="jquery-simplecolorpicker-fa" style="display: none;" id="hea" onchange="header1()" >
+                                    <option value="#2d353c">Black</option>
+                                    <option value="#f0f3f4">Silver</option>
+                                    <option value="#b6c2c9">Grey</option>
+                                    <option value="#727cb6">Purple</option>
+                                    <option value="#348fe2">Primary</option>
+                                    <option value="#49b6d6">Aqua</option>
+                                    <option value="#00acac">Green</option>
+                                    <option value="#90ca4b">Lime</option>
+                                    <option value="#f59c1a">Orange</option>
+                                    <option value="#ffd900">Yellow</option>
+                                    <option value="#ff5b57">Red</option>
+                                </select>
+                                <input type="color" hidden name="head1" id="head1" >
+                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">Sidebar</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <select name="jquery-simplecolorpicker-fa" style="display: none;" id="sid" onchange="sidebar1()">
+                                    <option value="#2d353c">Black</option>
+                                    <option value="#f0f3f4">Silver</option>
+                                    <option value="#b6c2c9">Grey</option>
+                                    <option value="#727cb6">Purple</option>
+                                    <option value="#348fe2">Primary</option>
+                                    <option value="#49b6d6">Aqua</option>
+                                    <option value="#00acac">Green</option>
+                                    <option value="#90ca4b">Lime</option>
+                                    <option value="#f59c1a">Orange</option>
+                                    <option value="#ffd900">Yellow</option>
+                                    <option value="#ff5b57">Red</option>
+                                </select>
+                                
+                                <input type="color" hidden name="side1" id="side1" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 col-form-label">Content Background</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <select name="jquery-simplecolorpicker-fa" style="display: none;" id="backgr" onchange="back1()">
+                                    <option value="#2d353c">Black</option>
+                                    <option value="#f0f3f4">Silver</option>
+                                    <option value="#b6c2c9">Grey</option>
+                                    <option value="#727cb6">Purple</option>
+                                    <option value="#348fe2">Primary</option>
+                                    <option value="#49b6d6">Aqua</option>
+                                    <option value="#00acac">Green</option>
+                                    <option value="#90ca4b">Lime</option>
+                                    <option value="#f59c1a">Orange</option>
+                                    <option value="#ffd900">Yellow</option>
+                                    <option value="#ff5b57">Red</option>
+                                </select>
+                                <input type="color"  name="back111" hidden id="back111">
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="button" class="btn btn-primary btn-lg col-md" value="Set Theme" onclick="change_theme()">
+                    
+
+                </form>
+            </div>
+            <!-- end panel-body -->
+        </div>
+        <!-- end panel -->
+       
+    </div>
+
+    <!-- =================================================================== -->
+
+    <script>
+        function change_theme(){
+            $.ajax({
+                url:"/change_theme/",
+                method:'POST',
+                datType:'JSON',
+                data:$("#color_theme").serialize(),
+                success: function(data)
+                {   if(data.result){
+                        swal("Theme set Successfully !!!", "Check your website and see how it looks", "success");
+                    }
+                    else{}
+
+                },
+                failure:function(data)
+                {
+
+                }
+            });
+        }
+
+        function header1(){
+            var h = document.getElementById('hea').value;
+            document.getElementById('head1').value = h;
+            // alert(document.getElementsByName('head1').value);
+
+        }
+        function sidebar1(){
+            var h = document.getElementById('sid').value;
+            document.getElementById('side1').value = h;
+
+        }
+        function back1(){
+            var h = document.getElementById('backgr').value;
+            document.getElementById('back111').value = h;
+
+        }
+    </script>
+
+{% endblock %}

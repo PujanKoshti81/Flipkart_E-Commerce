@@ -1,0 +1,1106 @@
+{% extends 'admin/home.html' %}
+{% block title %} EDIT PRODUCT {% endblock %}
+{% block content %}
+
+{% load static %}
+{% load staticfiles %}
+<!-- <div class="col-lg-6"> -->
+        
+<!-- @@@@@@@@@@@@@@ Main Content @@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- begin panel -->
+    <div class="panel panel-inverse" data-sortable-id="form-plugins-1">
+        <!-- begin panel-heading -->
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title">Bootstrap Date Time Picker</h4>
+        </div>
+        <!-- end panel-heading -->
+
+        <div class="modal-content">
+            <form enctype="multipart/form-data" name="abccc"action="/edit_product_form_submit/" method="POST" id="product_form">
+                <div class="modal-header">
+                    <h3 class="modal-title">Product will be added to the following category</h3>
+                </div>
+                <input type="text" hidden value="{{product.id}}" name="product_id">
+                <input type="text" hidden value="{{product.special_price_id.id}}" name="special_price_id">
+                <input type="text" hidden value="{{product.adv_inventory_id.id}}" name="adv_inventory_id">
+                <input type="text" hidden value="{{product.contents_id.id}}" name="contents_id">
+                <input type="text" hidden value="{{product.seo_id.id}}" name="seo_id">
+                <input type="text" hidden value="{{product.schedule_design_id.id}}" name="schedule_design_id">
+                <input type="text" hidden value="{{product.category}}" name="category_id">
+
+                <div class="modal-body">
+                    <!-- begin panel-body -->
+                    <div class="panel-body">
+                        
+                        
+                        {% csrf_token %} 
+
+                        <h3>Product Basic Fields</h3>
+                        
+                        <!-- Product Name -->
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Product Name</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control m-b-5" name="product_name" value="{{product.product_name}}">
+
+                            </div>
+                        </div>
+                        
+                        <!-- Product price -->
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Price (INR)</label>
+                            <div class="col-md-9">
+                                <input type="number" name="product_price" class="form-control m-b-5" value="{{product.product_price}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-b-15">    
+                            <label class="col-form-label col-md-3">Special price    :</label>
+                            <div class="switcher">
+                                <input type="checkbox" name="special_price_button" id="switcher_checkbox_1" onclick="special_price()" value="1">
+                                <label for="switcher_checkbox_1"></label>
+                            </div>
+                            
+                        </div>
+
+                        <!-- ------Special Price  --------- -->
+                        <div id="sp_price" style="display:none;">
+                            <!-- begin panel -->
+                                <div class="panel panel-inverse" data-sortable-id="form-plugins-1">
+                                    <!-- begin panel-body -->
+                                    <div class="panel-body panel-form" >
+                                        <div class="form-group row">
+                                            <label class="col-md-3 col-form-label">From :</label>
+                                            <div class="col-md-8">
+                                                <div class="row row-space-10">
+                                                    <div class="col-xs-4">
+                                                        <input type="text" class="form-control" name="sp_price_min_date" id="datetimepicker3"  value="{{product.special_price_id.special_price_from}}" />
+                                                    </div>
+                                                    <h4>To</h4>
+                                                    <div class="col-xs-4">
+                                                        <input type="text" class="form-control" name="sp_price_max_date" id="datetimepicker4"  value="{{product.special_price_id.special_price_to}}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end panel-body -->
+
+                                    <div class="form-group row m-b-15">
+                                        <label class="col-form-label col-md-3">Special Price</label>
+                                        <div class="col-md-9">
+                                            <input type="number" name="sp_product_price" class="form-control m-b-5" value="{{product.special_price_id.special_price}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row m-b-15">
+                                        <label class="col-form-label col-md-3">Cost</label>
+                                        <div class="col-md-9">
+                                            <input type="number" name="sp_product_cost" class="form-control m-b-5" value="{{product.special_price_id.special_cost}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row m-b-15">
+                                        <label class="col-form-label col-md-3">Manufacture's suggested Retailer price :</label>
+                                        <div class="col-md-9">
+                                            <input type="number" name="sp_retailer_price" class="form-control m-b-5" value="{{product.special_price_id.mfr_suggested_retailer_price}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row m-b-15">
+                                            <label class="col-form-label col-md-3"> Display Actual Price : </label>
+                                            <div class="col-md-9">
+                                                <select class="form-control" name="display_actual_price"  >
+                                                    <option value="Use_Config" {% if product.special_price_id.disp_actual_price == "Use_Config" %}selected="selected"{% endif %}  >Use Config</option>
+                                                    <option value="On_Gesture" {% if product.special_price_id.disp_actual_price == "On_Gesture" %}selected="selected"{% endif %}  >On Gesture</option>
+                                                    <option value="On_Cart" {% if product.special_price_id.disp_actual_price == "On_Cart" %}selected="selected"{% endif %}  >On Cart</option>
+                                                    <option value="Before_Order_Confirmation" {% if product.special_price_id.disp_actual_price == "Before_Order_Confirmation" %}selected="selected"{% endif %}  >Before Order Confirmation</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            <!-- end panel -->
+
+                        </div>   
+                        <!-- --------------------------------------------------- -->
+
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3"> Tax Class : </label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="tax_class" >
+                                    <option value="None"   {% if product.tax_class == "None" %}selected="selected"{% endif %}   >None</option>
+                                    <option value="Refund_Adjustment"   {% if product.tax_class == "Refund_Adjustment" %}selected="selected"{% endif %}   >Refund Adjustment</option>
+                                    <option value="Gift_Options"   {% if product.tax_class == "Gift_Options" %}selected="selected"{% endif %}   >Gift Options</option>
+                                    <option value="Order_Gift_Wrapping"   {% if product.tax_class == "Order_Gift_Wrapping" %}selected="selected"{% endif %}   >Order Gift Wrapping</option>
+                                    <option value="Item_Gift_Wrapping"   {% if product.tax_class == "Item_Gift_Wrapping" %}selected="selected"{% endif %}   >Item Gift Wrapping</option>
+                                    <option value="Printed_Gift_Wrapping"   {% if product.tax_class == "Printed_Gift_Wrapping" %}selected="selected"{% endif %}   >Printed Gift Wrapping</option>
+                                    <option value="Reward_Points"   {% if product.tax_class == "Reward_Points" %}selected="selected"{% endif %}   >Reward Points</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- PRODUCT QUANTITY -->
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Product Quantity:</label>
+                            <div class="col-md-5">
+                                <input type="number" name="product_quantity" class="form-control m-b-5" value="{{product.product_quantity}}">
+                            </div>
+                            <div class="col-md-3">
+
+                                <button type="button" class="btn btn-indigo " href="#centralModalSm2" data-toggle="modal">Advance Inventory</button>
+                            </div>    
+          
+                                <!-- ============================= Modal form for quantity ====================== -->
+                        
+                                    <!-- Central Modal Small -->
+                                    <div class="modal fade" id="centralModalSm2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                    aria-hidden="true">
+
+                                        <!-- Change class .modal-sm to change the size of the modal -->
+                                        <div class="modal-dialog modal-lg" role="document">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title w-100" id="myModalLabel">Advanced Inventory</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Manage Stock : </label>
+                                                            <div class="col-md-6">
+                                                                <div class="switcher">
+                                                                    <input type="checkbox" name="manage_stock" id="switcher_checkbox_3" {% if product.adv_inventory_id.manage_stock == True %} checked {% endif %}>
+                                                                    <label for="switcher_checkbox_3"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Out of Stock Threshold : </label>
+                                                            <div class="col-md-6">
+                                                                <input type="number" id="out_of_stock"  name="out_of_stock" class="form-control m-b-5" {% if product.adv_inventory_id.out_of_stock_threshold != None %} enabled value="{{product.adv_inventory_id.out_of_stock_threshold}}" {% endif %}>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                        <input type="checkbox" name="switcher_checkbox_4" id="switcher_checkbox_4" onclick="out_of_stock1()" >
+                                                                        <label for="switcher_checkbox_4"></label>
+                                                                    </div>
+                                                            </div>    
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Minimum Qty allowed in Shopping Cart : </label>
+                                                            <div class="col-md-6">
+                                                                <input type="number" id="min_qty_cart"  name="min_qty_cart" class="form-control m-b-5" {% if product.adv_inventory_id.min_qty_allowed_in_cart != None %} enabled value="{{product.adv_inventory_id.min_qty_allowed_in_cart}}" {% endif %}>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                        <input type="checkbox" name="switcher_checkbox_5" id="switcher_checkbox_5" onclick="min_qty_cart1()" >
+                                                                        <label for="switcher_checkbox_5"></label>
+                                                                    </div>
+                                                            </div>    
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Maximum Qty allowed in Shopping Cart : </label>
+                                                            <div class="col-md-6">
+                                                                <input type="number" id="max_qty_cart"  name="max_qty_cart" class="form-control m-b-5" {% if product.adv_inventory_id.max_qty_allowed_in_cart != None %} enabled value="{{product.adv_inventory_id.max_qty_allowed_in_cart}}" {% endif %}>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                        <input type="checkbox" name="switcher_checkbox_6" id="switcher_checkbox_6" onclick="max_qty_cart1()" >
+                                                                        <label for="switcher_checkbox_6"></label>
+                                                                    </div>
+                                                            </div>    
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Quantity uses Decimals </label>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                    <input type="checkbox" name="qty_decimels" id="switcher_checkbox_7" {% if product.adv_inventory_id.qty_uses_decimal != 0 %} checked  {% endif %} >
+                                                                    <label for="switcher_checkbox_7"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Allow multiple boxes for shipping </label>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                    <input type="checkbox" name="multi_box_ship_btn" id="switcher_checkbox_8" {% if product.adv_inventory_id.allow_multi_box_of_shipping != 0 %} checked  {% endif %}  >
+                                                                    <label for="switcher_checkbox_8"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Back Orders : </label>
+                                                            <div class="col-md-6">
+                                                                <select class="form-control" id="back_orders"  name="back_orders">
+                                                                    <option value="No_Back_Orders" {% if product.adv_inventory_id.back_orders == "No_Back_Orders" %}selected="selected"{% endif %}  >No Back Orders</option>
+                                                                    <option value="All_Qty_below_0" {% if product.adv_inventory_id.back_orders == "All_Qty_below_0" %}selected="selected"{% endif %} >All Qty below 0</option>
+                                                                    <option value="All_Qty_below_0_&_Notify_Customer" {% if product.adv_inventory_id.back_orders == "All_Qty_below_0_&_Notify_Customer" %}selected="selected"{% endif %} >All Qty below 0 and Notify Customer</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                        <input type="checkbox" name="switcher_checkbox_9" id="switcher_checkbox_9" onclick="back_orders1()" >
+                                                                        <label for="switcher_checkbox_9"></label>
+                                                                    </div>
+                                                            </div>    
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Notify for Quantity Below : </label>
+                                                            <div class="col-md-6">
+                                                                <input type="number" id="Notify_for_Quantity_Below"  name="Notify_for_Quantity_Below" class="form-control m-b-5" value="{{product.adv_inventory_id.notify_for_qty_below}}">
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                        <input type="checkbox" name="switcher_checkbox_10" id="switcher_checkbox_10" onclick="Notify_for_Quantity_Below1()" >
+                                                                        <label for="switcher_checkbox_10"></label>
+                                                                    </div>
+                                                            </div>    
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Enable Qty Increments </label>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                    <input type="checkbox" name="enable_qty_increment" id="switcher_checkbox_11" {% if product.adv_inventory_id.enable_qty_increments != 0 %} checked  {% endif %} >
+                                                                    <label for="switcher_checkbox_11"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Stock Status (in stock ?) </label>
+                                                            <div class="col-md-3">
+                                                                <div class="switcher">
+                                                                    <input type="checkbox" name="stock_in" id="switcher_checkbox_12"  {% if product.adv_inventory_id.stock_status != 0 %} checked  {% endif %} >
+                                                                    <label for="switcher_checkbox_12"></label>
+                                                                </div>
+                                                            </div>
+                                                            <label class="col-form-label col-md-3">Yes or No </label>
+                                                        </div>    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <!-- <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button> -->
+                                                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" >Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Central Modal Small -->
+                                <!-- ==================================================================================== -->
+                        </div>
+
+                            
+
+                        
+                        
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Length : </label>
+                            <div class="col-md-9">
+                                <input type="number" name="length_of_product" class="form-control m-b-5" value="{{product.length}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Width : </label>
+                            <div class="col-md-9">
+                                <input type="number" name="width_of_product" class="form-control m-b-5" value="{{product.width}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Height : </label>
+                            <div class="col-md-9">
+                                <input type="number" name="height_of_product" class="form-control m-b-5" value="{{product.height}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Weight : </label>
+                            <div class="col-md-6">
+                                <input type="number" id="weight"  name="weight_of_product" class="form-control m-b-5" value="{{product.weight}}">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="switcher">
+                                        <input type="checkbox" name="switcher_checkbox_2" id="switcher_checkbox_2" onclick="weight1()" >
+                                        <label for="switcher_checkbox_2"></label>
+                                    </div>
+                            </div>    
+                        </div>
+
+
+                        <!-- Brand Name -->
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Brand Name</label>
+                            <div class="col-md-9">
+                                <input type="text" name="brand_name" class="form-control m-b-5" value="{{product.brand_name}}">
+                            </div>
+                        </div>
+                        
+                        <!-- CATEGORY -->
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Product Category </label>
+                            <div class="col-md-5">
+                                <h5>Your Product will be added to the following category</h5>
+                                    <div>
+                                        <div id="id_of_category"></div>    
+                                        <div id="div_category_level_1" ><input type="text"  class="form-control m-b-5"  value="{{all.category_level_1}}"></div>
+                                        <div id="div_category_level_2" ></div>
+                                        <div id="div_category_level_3" ></div>
+                                        <div id="div_category_level_4" ></div>
+                                        <div id="div_category_level_5" ></div>
+                                    </div>
+                    
+                            </div>
+                            <div class="col-md-3">
+
+                                <button type="button" class="btn btn-indigo " href="#modal-without-animation"  data-toggle="modal">Select Category of the product</button>
+                            </div>
+
+                            <!-- href="#centralModalSm3" -->
+                            <!-- ============================= disabled Modal form for quantity ====================== -->
+                                    
+                                    <!-- Central Modal Small -->
+                                    <!-- <div class="modal fade" id="centralModalSm3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                    aria-hidden="true"> -->
+
+                                        <!-- Change class .modal-sm to change the size of the modal -->
+                                        <!-- <div class="modal-dialog modal-lg" role="document">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title w-100" id="myModalLabel">Select category : </h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- Central Modal Small -->
+                                  
+                                <!-- ==================================================================================== -->
+                        </div>
+
+
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Visibility </label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="visibility">
+                                    <option selected value="Not_Visible_Individual">Not Visible Individual</option>
+                                    <option value="Catalog" {% if product.visibility == "Catalog" %}selected="selected"{% endif %}>Catalog</option>
+                                    <option value="Search" {% if product.visibility == "Search" %}selected="selected"{% endif %}>Search</option>
+                                    <option value="Catalog_&_Search" {% if product.visibility == "Catalog_&_Search" %}selected="selected"{% endif %}>Catalog, Search</option>
+                                    
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label">Set Product as New From :</label>
+                            <div class="col-md-8">
+                                <div class="row row-space-10">
+                                    <div class="col-xs-4">
+                                        <input type="text" class="form-control" name="new_pro_min_date" id="datetimepicker1" value="{{product.set_pro_new_from}}" />
+                                    </div>
+                                    <h4>To</h4>
+                                    <div class="col-xs-4">
+                                        <input type="text" class="form-control" name="new_pro_max_date" id="datepicker-default" value="{{product.set_pro_new_to}}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Is Featured </label>
+                            <div class="col-md-3">
+                                <div class="switcher">
+                                    <input type="checkbox" name="featured" id="switcher_checkbox_93" {% if product.featured != 0 %}enabled{% endif %} >
+                                    <label for="switcher_checkbox_93"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <!-- ============== COLLAPSIBLE ITEMS ================== -->
+                        <!-- begin col-6 -->
+                            <!-- <div class="col-lg-6"> -->
+                                <!-- begin #accordion -->
+                                <div id="accordion" class="card-accordion">
+                                    
+                                    
+                                    <!-- #1 Content (Details)---------------------------------------------------------------------- -->
+                                    <!-- begin card -->
+                                        <div class="card">
+                                            <div class="card-header bg-black text-white pointer-cursor" data-toggle="collapse" data-target="#collapseOne">
+                                                    #1 Content (Details)
+                                            </div>
+                                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Details of products : </label>
+                                                            <div class="col-md-9">
+                                                                <textarea class="form-control" name="product_all_details" rows="5" >{{product.contents_id.full_description}}</textarea>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Short (MAIN) Details of products : </label>
+                                                            <div class="col-md-9">
+                                                                <textarea class="form-control" name="product_main_details" rows="5" >{{product.contents_id.main_description}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    <!-- end card -->
+
+                                    <!-- #2 Configurations------------------------------------------------------------------ -->
+                                    <!-- begin card -->
+                                        <div class="card">
+                                            <div class="card-header bg-black text-white pointer-cursor collapsed" data-toggle="collapse" data-target="#collapseTwo">
+                                                #2 Configurations 
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                        Configurable products allow customers to choose options (Ex: shirt color). You need to create a simple product for each configuration (Ex: a product for each color).
+                                                        <button type="button" class="btn btn-inverse ">Create Configurations</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- end card -->
+
+                                    <!--------------------- #3 Upload Images and Videos of Products------------------------------ -->
+                                    <!-- begin card -->
+                                    <div class="card">
+                                            <div class="card-header bg-black text-white pointer-cursor collapsed" data-toggle="collapse" data-target="#collapseThree">
+                                                    #3 Upload Images and Videos of Products
+                                            </div>
+                                            <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    
+                                                    <!-- begin #content -->
+                                                            
+                                                            <!-- begin page-header -->
+                                                            <h1 class="page-header">Multiple File Upload <small>header small text goes here...</small></h1>
+                                                            <!-- end page-header -->
+                                                            
+                                                            
+                                                                <!-- begin panel -->
+                                                                <div class="panel panel-inverse">
+                                                                    <!-- begin panel-body -->
+                                                                    <div class="panel-body">			
+                                                                        <div class="note note-yellow m-b-15">
+                                                                            <div class="note-icon f-s-20">
+                                                                                <i class="fa fa-lightbulb fa-2x"></i>
+                                                                            </div>
+                                                                            <div class="note-content">
+                                                                                <h4 class="m-t-5 m-b-5 p-b-2">Demo Notes</h4>
+                                                                                <ul class="m-b-5 p-l-25">
+                                                                                    <li>The maximum file size for uploads in this demo is <strong>5 MB</strong> (default file size is unlimited).</li>
+                                                                                    <!-- <li>Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this demo (by default there is no file type restriction).</li>
+                                                                                    <li>Uploaded files will be deleted automatically after <strong>5 minutes</strong> (demo setting).</li> -->
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row fileupload-buttonbar">
+                                                                            <div class="col-md-7">
+                                                                                <span class="btn btn-primary fileinput-button m-r-3">
+                                                                                    <i class="fa fa-plus"></i>
+                                                                                    <span>Add Thumbnail</span>
+                                                                                    <input type="file" name="thumbnail_of_product" >
+                                                                                </span>
+                                                                                <span class="btn btn-primary fileinput-button m-r-3">
+                                                                                    <i class="fa fa-plus"></i>
+                                                                                    <span>Add Main Image</span>
+                                                                                    <input type="file" name="Main_image_of_product" >
+                                                                                </span>
+                                                                                <span class="btn btn-primary fileinput-button m-r-3">
+                                                                                    <i class="fa fa-plus"></i>
+                                                                                    <span>Add Multiple images</span>
+                                                                                    <input type="file" name="images_of_product" multiple>
+                                                                                </span>
+                                                                                <span class="btn btn-primary fileinput-button m-r-3">
+                                                                                    <i class="fa fa-plus"></i>
+                                                                                    <span>Add Video</span>
+                                                                                    <input type="file" name="video_of_product" >
+                                                                                </span>
+                                                                                
+                                                                                <button type="reset" class="btn btn-default cancel m-r-3">
+                                                                                    <i class="fa fa-ban"></i>
+                                                                                    <span>Cancel upload</span>
+                                                                                </button>
+                                                                                <!-- The global file processing state -->
+                                                                                <span class="fileupload-process"></span>
+                                                                            </div>
+                                                                            <!-- The global progress state -->
+                                                                            <div class="col-md-5 fileupload-progress fade">
+                                                                                <!-- The global progress bar -->
+                                                                                <div class="progress progress-striped active m-b-0">
+                                                                                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                                                                                </div>
+                                                                                <!-- The extended global progress state -->
+                                                                                <div class="progress-extended">&nbsp;</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- end panel-body -->
+                                                                    <!-- begin table -->
+                                                                    <table class="table table-striped table-condensed">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th width="10%">PREVIEW</th>
+                                                                                <th>FILE INFO</th>
+                                                                                <th>UPLOAD PROGRESS</th>
+                                                                                <th width="1%"></th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody class="files">
+                                                                            <tr data-id="empty">
+                                                                                <td colspan="4" class="text-center text-muted p-t-30 p-b-30">
+                                                                                    <div class="m-b-10"><i class="fa fa-file fa-3x"></i></div>
+                                                                                    <div>No file selected</div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- end table -->
+                                                                </div>
+                                                                <!-- end panel -->
+                                                        
+                                                    <!-- end #content -->
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- end card -->
+
+
+
+                                    <!-- #4 Search Engine Optimization--------------------------------------------------------  -->
+
+                                    <!-- begin card -->
+                                        <div class="card">
+                                            <div class="card-header bg-black text-white pointer-cursor collapsed" data-toggle="collapse" data-target="#collapseFour">
+                                                #4 Search Engine Optimization 
+                                            </div>
+                                            <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">URL Key</label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control m-b-5" name="url_key_seo" value="{{product.seo_id.url_key}}">
+                                                    
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Meta Title </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control m-b-5" name="meta_title_seo" value="{{product.seo_id.meta_title}}">
+                                                    
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Meta Keywords </label>
+                                                            <div class="col-md-9">
+                                                                <input type="text" class="form-control m-b-5" name="meta_keywords_seo" value="{{product.seo_id.meta_keywords}}">
+                                                    
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row m-b-15">
+                                                            <label class="col-form-label col-md-3">Meta Description </label>
+                                                            <div class="col-md-9">
+                                                                    <textarea class="form-control" name="meta_description_seo" rows="5" >{{product.seo_id.meta_description}}</textarea>
+                                                                <div class="admin__field-note" data-bind="attr: {id: noticeId}" id="notice-L5OKEFL">
+                                                                    <span data-bind="i18n: notice">Maximum 255 chars. Meta Description should optimally be between 150-160 characters</span>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- end card -->
+
+
+
+                                    <!-- #5 Related Products, Ups-Sells and Cross-Sells---------------------------------------------- -->
+                                    <!-- begin card -->
+                                        <div class="card">
+                                            <div class="card-header bg-black text-white pointer-cursor collapsed" data-toggle="collapse" data-target="#collapseFive">
+                                                #5 Related Products, Ups-Sells and Cross-Sells 
+                                            </div>
+                                            <div id="collapseFive" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <div class="form-group row m-b-15">
+                                                        <label class="col-form-label col-md-3">Related Products</label>
+                                                        <div class="col-md-9">
+                                                            <button type="button" class="btn btn-inverse ">Add Related Products</button>
+                                                        </div>
+                                                        <div class="admin__field-complex-content" data-bind="html: $data.content">An up-sell item is offered to the customer as a pricier or higher-quality alternative to the product the customer is looking at.
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row m-b-15">
+                                                        <label class="col-form-label col-md-3">Up-Sell Products</label>
+                                                        <div class="col-md-9">
+                                                            <button type="button" class="btn btn-inverse ">Add Up-Sell Products</button>
+                                                        </div>
+                                                        <div class="admin__field-complex-content" data-bind="html: $data.content">Related products are shown to customers in addition to the item the customer is looking at.</div>
+                                                    </div>
+                                                    <div class="form-group row m-b-15">
+                                                        <label class="col-form-label col-md-3">Cross-Sell Products</label>
+                                                        <div class="col-md-9">
+                                                            <button type="button" class="btn btn-inverse ">Add Cross-Sell Products</button>
+                                                        </div>
+                                                        <div class="admin__field-complex-content" data-bind="html: $data.content">These "impulse-buy" products appear next to the shopping cart as cross-sells to the items already in the shopping cart.
+                                                            </div>
+                                                    </div>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- end card -->
+                                    
+
+
+
+
+                                    <!-- #6 Schedule Design Update ---------------------------------------------------------------------- -->
+                                    <!-- begin card -->
+                                        <div class="card">
+                                            <div class="card-header bg-black text-white pointer-cursor collapsed" data-toggle="collapse" data-target="#collapseSeven">
+                                                #6 Schedule Design Update 
+                                            </div>
+                                            <div id="collapseSeven" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <div class="form-group row m-b-15">
+                                                        <label class="col-form-label col-md-3">Schedule Update From : </label>
+                                                        <div class="col-md-6">
+                                                            <div class="input-group input-daterange">
+                                                                <input type="text" class="form-control" name="schedule_update_start" value="{{product.schedule_design_id.schedule_design_start}}">
+                                                                <span class="input-group-addon">to</span>
+                                                                <input type="text" class="form-control" name="schedule_update_end" value="{{product.schedule_design_id.schedule_design_end}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row m-b-15">
+                                                        <label class="col-form-label col-md-3">New Theme : </label>
+                                                        <div class="col-md-4">
+                                                            <select class="form-control" name="new_theme">
+                                                                <option value="1"{% if product.schedule_design_id.new_theme == "1" %}selected="selected"{% endif %}>1</option>
+                                                                <option value="2"{% if product.schedule_design_id.new_theme == "2" %}selected="selected"{% endif %}>2</option>
+                                                                <option value="3"{% if product.schedule_design_id.new_theme == "3" %}selected="selected"{% endif %}>3</option>
+                                                                <option value="4"{% if product.schedule_design_id.new_theme == "4" %}selected="selected"{% endif %}>4</option>
+                                                                <option value="5"{% if product.schedule_design_id.new_theme == "5" %}selected="selected"{% endif %}>5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row m-b-15">
+                                                        <label class="col-form-label col-md-3">New Layout : </label>
+                                                        <div class="col-md-4">
+                                                            <select class="form-control" name="new_layout">
+                                                                <option value="1"{% if product.schedule_design_id.new_layout == "1" %}selected="selected"{% endif %}>1</option>
+                                                                <option value="2"{% if product.schedule_design_id.new_layout == "2" %}selected="selected"{% endif %}>2</option>
+                                                                <option value="3"{% if product.schedule_design_id.new_layout == "3" %}selected="selected"{% endif %}>3</option>
+                                                                <option value="4"{% if product.schedule_design_id.new_layout == "4" %}selected="selected"{% endif %}>4</option>
+                                                                <option value="5"{% if product.schedule_design_id.new_layout == "5" %}selected="selected"{% endif %}>5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- end card -->
+
+
+                                    <!-- #7 Gift Options ------------------------------------------------------------------------ -->
+                                    <!-- begin card -->
+                                    <div class="card">
+                                            <div class="card-header bg-black text-white pointer-cursor collapsed" data-toggle="collapse" data-target="#collapseSix">
+                                                #7 Gift Options 
+                                            </div>
+                                            <div id="collapseSix" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <div class="form-group row m-b-15">
+                                                        <label class="col-form-label col-md-3">Gift Option Allow ? </label>
+                                                        <div class="col-md-3">
+                                                            <div class="switcher">
+                                                                <input type="checkbox" name="gift_option" id="switcher_checkbox_913" {% if product.gift != 0 %}checked{% endif %} >
+                                                                <label for="switcher_checkbox_913"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- end card -->
+                                </div>
+                                <!-- end #accordion -->
+                            <!-- </div> -->
+                        <!-- end col-6 -->
+
+
+                        <!-- =========================================================================== -->
+                        
+                    </div>
+                    <!-- end panel-body -->
+
+                    <h1>Hello Hello</h1>
+                </div>
+                <div class="modal-footer">
+                    <a href="javascript:;" class="btn btn-white" data-dismiss="modal">Close</a>
+                    <!-- <a href="javascript:;" class="btn btn-primary">Save Changes</a> -->
+                    <input type="submit" class="btn btn-primary" value="Update Product">
+                </div>
+                
+            </form>
+        </div>
+        <!-- end panel-body -->
+    </div>
+    <!-- end panel -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     -->
+
+                    
+
+
+
+
+    <!-- ---------------- FLOATING BUTTON ------------------ -->
+    <div>
+            <div class="zoom">
+                <a href="#modal-without-animation"   data-toggle="modal" class="zoom-fab zoom-btn-large" id="zoomBtn"  >Open</a>
+            </div>
+                    
+    </div>    
+
+
+    	<!----------- at first after selecting category #modal-without-animation -->
+        <div class="modal" id="modal-without-animation">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    
+                    <form id="first_panel_form"> 
+                        {% csrf_token %}  
+                        <div class="modal-header">
+                            <h4 class="modal-title">Select category to add product in that</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="panel-heading">
+                            
+                            <h4 class="panel-title">Product Form  </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped m-b-0">
+                                    <thead>
+                                        <tr>
+                                            <th>level 1</th>
+                                            <th>level 2</th>
+                                            <th>level 3</th>
+                                            <th>level 4</th>
+                                            <th>level 5</th>
+                                            <th width="1%">Select</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table_content">
+                                        {% for i in all %}    
+                                           
+                                            <tr>
+                                                <td>{{ i.category_level_1 }}</td>
+                                                <td>{{ i.category_level_2 }}</td>
+                                                <td>{{ i.category_level_3 }}</td>
+                                                <td>{{ i.category_level_4 }}</td>
+                                                <td>{{ i.category_level_5 }}</td>
+                                                <td class="with-btn" nowrap="">
+                                                    <input type="radio" onclick="second_form({{ i.id }})" name="selected_category" >
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </form> 
+                        
+                </div>
+            </div>
+        </div>
+
+
+
+
+            
+
+
+
+
+    
+    <a href="#modal-message" class="btn btn-sm btn-primary" id="call_me" hidden data-toggle="modal">Open Form</a>
+    
+
+<!-- </div> -->
+
+<style>
+
+
+    
+    .zoom {
+  position: fixed;
+  bottom: 45px;
+  right: 24px;
+  height: 70px;
+}
+
+.zoom-fab {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  background-color: #009688;
+  vertical-align: middle;
+  text-decoration: none;
+  text-align: center;
+  transition: 0.2s ease-out;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  color: #FFF;
+}
+
+.zoom-fab:hover {
+  background-color: #4db6ac;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+}
+
+.zoom-btn-large {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+}
+
+</style>    
+
+<script>
+
+       
+
+function weight1(){
+    var check = document.getElementById('switcher_checkbox_2');
+    if(check.checked == true){
+        document.getElementById('weight').disabled = false;
+    }
+    else{
+        document.getElementById('weight').disabled = true;
+    }
+}
+
+function out_of_stock1(){
+    var check = document.getElementById('switcher_checkbox_4');
+    if(check.checked == true){
+        document.getElementById('out_of_stock').disabled = false;
+    }
+    else{
+        document.getElementById('out_of_stock').disabled = true;
+    }
+}
+
+
+function min_qty_cart1(){
+    var check = document.getElementById('switcher_checkbox_5');
+    if(check.checked == true){
+        document.getElementById('min_qty_cart').disabled = false;
+    }
+    else{
+        document.getElementById('min_qty_cart').disabled = true;
+    }
+}
+function max_qty_cart1(){
+    var check = document.getElementById('switcher_checkbox_6');
+    if(check.checked == true){
+        document.getElementById('max_qty_cart').disabled = false;
+    }
+    else{
+        document.getElementById('max_qty_cart').disabled = true;
+    }
+}
+function back_orders1(){
+    var check = document.getElementById('switcher_checkbox_9');
+    if(check.checked == true){
+        document.getElementById('back_orders').disabled = false;
+    }
+    else{
+        document.getElementById('back_orders').disabled = true;
+    }
+}
+
+
+function Notify_for_Quantity_Below1(){
+    var check = document.getElementById('switcher_checkbox_10');
+    if(check.checked == true){
+        document.getElementById('Notify_for_Quantity_Below').disabled = false;
+    }
+    else{
+        document.getElementById('Notify_for_Quantity_Below').disabled = true;
+    }
+}
+
+function special_price(){
+    var checkbox = document.getElementById('switcher_checkbox_1');
+    var sp_price = document.getElementById('sp_price');
+    if (checkbox.checked == true){
+        sp_price.style.display = "block";
+    }
+    else{
+        sp_price.style.display = "none";
+    }
+}
+
+function second_form(id){
+    $.ajax({
+        url:"/get_category_id/",
+        method:'POST',
+        data:{ 'id':id,csrfmiddlewaretoken:'{{ csrf_token }}'},
+        datType:'JSON',
+        success: function(data){
+            var obj = JSON.parse(data['obj']);
+            console.log(obj[0]['fields']);
+            console.log(obj[0]['pk']);
+
+            $("#call_me").click();
+
+            
+            if(obj[0]['fields']['category_level_2'] == "0")
+            {
+                var a = `<input type="text" hidden  name="id_of_category" value="${obj[0]['pk']}">`;
+                $("#id_of_category").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level1" value="${obj[0]['fields']['category_level_1']}">`;
+                $("#div_category_level_1").html(a);
+
+                var a = `<input type="text" hidden  name="level2" value="0">`;
+                $("#div_category_level_2").html(a);
+
+                var a = `<input type="text" hidden  name="level3" value="0">`;
+                $("#div_category_level_3").html(a);
+
+                var a = `<input type="text"  hidden name="level4" value="0">`;
+                $("#div_category_level_4").html(a);
+
+                var a = `<input type="text" hidden  name="level5" value="0">`;
+                $("#div_category_level_5").html(a);
+
+
+
+            }
+            else if(obj[0]['fields']['category_level_3'] == "0") {
+                
+                var a = `<input type="text" hidden  name="id_of_category" value="${obj[0]['pk']}">`;
+                $("#id_of_category").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level1" value="${obj[0]['fields']['category_level_1']}">`;
+                $("#div_category_level_1").html(a);
+                
+                var a = `<input type="text"  class="form-control m-b-5" name="level2" value="${obj[0]['fields']['category_level_2']}">`;
+                $("#div_category_level_2").html(a);
+
+                var a = `<input type="text" hidden  name="level3" value="0">`;
+                $("#div_category_level_3").html(a);
+
+                var a = `<input type="text" hidden  name="level4" value="0">`;
+                $("#div_category_level_4").html(a);
+
+                var a = `<input type="text" hidden  name="level5" value="0">`;
+                $("#div_category_level_5").html(a);
+            }
+            else if(obj[0]['fields']['category_level_4'] == "0") {
+
+                var a = `<input type="text" hidden  name="id_of_category" value="${obj[0]['pk']}">`;
+                $("#id_of_category").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level1" value="${obj[0]['fields']['category_level_1']}">`;
+                $("#div_category_level_1").html(a);
+                
+                var a = `<input type="text"  class="form-control m-b-5" name="level2" value="${obj[0]['fields']['category_level_2']}">`;
+                $("#div_category_level_2").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level3" value="${obj[0]['fields']['category_level_3']}">`;
+                $("#div_category_level_3").html(a);
+
+                var a = `<input type="text" hidden  name="level4" value="0">`;
+                $("#div_category_level_4").html(a);
+
+                var a = `<input type="text" hidden  name="level5" value="0">`;
+                $("#div_category_level_5").html(a);
+            }
+            else if(obj[0]['fields']['category_level_5'] == "0") {
+
+                var a = `<input type="text" hidden  name="id_of_category" value="${obj[0]['pk']}">`;
+                $("#id_of_category").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level1" value="${obj[0]['fields']['category_level_1']}">`;
+                $("#div_category_level_1").html(a);
+                
+                var a = `<input type="text"  class="form-control m-b-5" name="level2" value="${obj[0]['fields']['category_level_2']}">`;
+                $("#div_category_level_2").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level3" value="${obj[0]['fields']['category_level_3']}">`;
+                $("#div_category_level_3").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level4" value="${obj[0]['fields']['category_level_4']}">`;
+                $("#div_category_level_4").html(a);
+
+                var a = `<input type="text" hidden  name="level5" value="0">`;
+                $("#div_category_level_5").html(a);
+            }
+
+            else{
+
+                var a = `<input type="text" hidden  name="id_of_category" value="${obj[0]['pk']}">`;
+                $("#id_of_category").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level1" value="${obj[0]['fields']['category_level_1']}">`;
+                $("#div_category_level_1").html(a);
+                
+                var a = `<input type="text"  class="form-control m-b-5" name="level2" value="${obj[0]['fields']['category_level_2']}">`;
+                $("#div_category_level_2").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level3" value="${obj[0]['fields']['category_level_3']}">`;
+                $("#div_category_level_3").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level4" value="${obj[0]['fields']['category_level_4']}">`;
+                $("#div_category_level_4").html(a);
+
+                var a = `<input type="text"  class="form-control m-b-5" name="level5" value="${obj[0]['fields']['category_level_5']}">`;
+                $("#div_category_level_5").html(a);
+            }
+        },
+        failure: function(data){}
+    });
+   
+
+}
+
+</script>
+
+{% endblock %}

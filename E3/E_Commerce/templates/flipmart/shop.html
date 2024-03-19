@@ -1,0 +1,969 @@
+
+
+{% extends 'flipmart/home.html' %}
+{% block title %}
+    FLIPMART | CHECKOUT
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+
+{% if request.session.user_id == None  %}
+  <script type="text/javascript">
+  window.location.href="/sign_in/";
+  </script>
+
+  {% endif %}
+
+
+<nav class="woocommerce-breadcrumb"><div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="http://www.ckthemes.com/flipmart">Home</a>&nbsp;/&nbsp;Shop</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </nav>
+
+
+
+    <div class="body-content outer-top-xs">
+            <div class="container">
+                <div class="row">
+                
+                                
+                         <div class="col-md-3 sidebar">
+                            <div class="sidebar-module-container">
+                                <div class="side-menu outer-bottom-xs"><div class="head"><i class="icon fa fa-align-justify fa-fw"></i> Categories</div><nav class="yamm megamenu-horizontal"><ul id="menu-categories-menu" class="nav"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item"><a href="http://#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="icon fa fa-shopping-bag"></i> Clothing</a>
+        <ul class="dropdown-menu mega-menu depth-0" role="menu">
+        <!-- mega-menu-container --><li><div class="yamm-content clearfix"><div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-3"><div class="menu-widget">
+            <h2 class="title">Men’s</h2>
+            <ul class="links depth-1" role="menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Dresses</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Shoes</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Jackets</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Sunglasses</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Sport Wear</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Blazers</a></li>
+            </ul>
+        </div></div>
+        <div class="col-xs-12 col-sm-12 col-md-3"><div class="menu-widget">
+            <h2 class="title">Women’s</h2>
+            <ul class="links depth-1" role="menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Handbags</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Jwellery</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Swimwear</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Tops</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Flats</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Shoes</a></li>
+            </ul>
+        </div></div>
+        <div class="col-xs-12 col-sm-12 col-md-3"><div class="menu-widget">
+            <h2 class="title">Kid’s</h2>
+            <ul class="links depth-1" role="menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Toys &amp; Games</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Jeans</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Shirts</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Shoes</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">School Bags</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Lunch Box</a></li>
+            </ul>
+        </div></div>
+        <div class="col-xs-12 col-sm-12 col-md-3"><div class="menu-widget">
+            <h2 class="title">Special</h2>
+            <ul class="links depth-1" role="menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Shirts</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Shorts</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Wipes</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Winter Wear</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Footwear</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Night Suits</a></li>
+            </ul>
+        </div></div>
+        </div></div></li><!-- /mega-menu-container -->
+        </ul>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item"><a href="http://#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"><i class="icon fa fa-laptop"></i> Electronics</a>
+        <ul class="dropdown-menu mega-menu depth-0" role="menu">
+        <!-- mega-menu-container --><li><div class="yamm-content clearfix"><div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4"><div class="menu-widget">
+            <h2 class="title">Computers</h2>
+            <ul class="links depth-1" role="menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Gaming</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Laptop Skins</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Apple</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Dell</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Lenovo</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Microsoft</a></li>
+            </ul>
+        </div></div>
+        <div class="col-xs-12 col-sm-12 col-md-4"><div class="menu-widget">
+            <h2 class="title">Mobiles</h2>
+            <ul class="links depth-1" role="menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Routers &amp; Modems</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">CPUs, Processors</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">PC Gaming Store</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Graphics Cards</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Components</a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#">Webcam</a></li>
+            </ul>
+        </div></div>
+        <div class="col-xs-12 col-sm-12 col-md-4"><div class="menu-widget">
+            <h2 class="title" style="display: none;">Banner</h2>
+            <ul class="links depth-1" role="menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><div class="dropdown-banner-holder"><img class="img-responsive" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/banner-side.png" alt="d"></div></a></li>
+            </ul>
+        </div></div>
+        </div></div></li><!-- /mega-menu-container -->
+        </ul>
+        </li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><i class="icon fa fa-paw"></i> Shoes</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><i class="icon fa fa-clock-o"></i> Watches</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><i class="icon fa fa-diamond"></i> Jewellery</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><i class="icon fa fa-heartbeat"></i> Health and Beauty</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><i class="icon fa fa-paper-plane"></i> Kids and Babies</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><i class="icon fa fa-futbol-o"></i> Sports</a></li>
+        <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="http://#"><i class="icon fa fa-leaf"></i> Home and Garden</a></li>
+        </ul></nav></div><div id="category-accordion-widget-2" class="sidebar-widget outer-bottom-small category-accordion"><h3 class="section-title">Category</h3>            <div class="sidebar-widget-body m-t-10">
+                        <div class="accordion">
+                            <div class="accordion-group">
+                                    <div class="accordion-heading"><a href="#clothing" data-toggle="collapse" class="accordion-toggle collapsed child">Clothing</a></div><div class="accordion-body collapse" id="clothing" style="height: 0px;">
+                            <div class="accordion-inner">
+        <ul class="children">
+            <li class="cat-item cat-item-31"><a href="http://www.ckthemes.com/flipmart/product-category/clothing/hoodies/">Hoodies</a>
+        </li>
+            <li class="cat-item cat-item-35"><a href="http://www.ckthemes.com/flipmart/product-category/clothing/t-shirts/">T-shirts</a>
+        </li>
+        </ul>
+        </div></div>
+        
+            <div class="accordion-heading"><a href="http://www.ckthemes.com/flipmart/product-category/hot-products/" data-toggle="collapse" class="accordion-toggle collapsed">Hot Products</a></div>
+        
+            <div class="accordion-heading"><a href="#music" data-toggle="collapse" class="accordion-toggle collapsed child">Music</a></div><div class="accordion-body collapse" id="music" style="height: 0px;">
+                            <div class="accordion-inner">
+        <ul class="children">
+            <li class="cat-item cat-item-36"><a href="http://www.ckthemes.com/flipmart/product-category/music/albums/">Albums</a>
+        </li>
+        </ul>
+        </div></div>
+        
+            <div class="accordion-heading"><a href="http://www.ckthemes.com/flipmart/product-category/posters/" data-toggle="collapse" class="accordion-toggle collapsed">Posters</a></div>
+        
+            <div class="accordion-heading"><a href="http://www.ckthemes.com/flipmart/product-category/uncategorized/" data-toggle="collapse" class="accordion-toggle collapsed">Uncategorized</a></div>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div><div class="clearfix"></div><div id="woocommerce_price_filter-2" class="sidebar-widget outer-bottom-small woocommerce widget_price_filter"><h3 class="section-title">Filter by price</h3><div class="sidebar-widget-body m-t-10"><form method="get" action="http://www.ckthemes.com/flipmart/shop/">
+                    <div class="price_slider_wrapper price-range-holder">
+                        <div class="price_slider price-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" style=""><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 100%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 100%;"></span></div>
+                        <div class="price_slider_amount" data-step="10">
+                            <input type="text" id="min_price" name="min_price" value="10" data-min="10" placeholder="Min price" style="display: none;">
+                            <input type="text" id="max_price" name="max_price" value="880" data-max="880" placeholder="Max price" style="display: none;">
+                            <h4 class="price_label" style="">
+                                <span class="min-max">
+                                     <span class="pull-left from">10$</span>
+                                     <span class="pull-right to">880$</span>
+                                </span>
+                            </h4>
+                            <div class="clearfix space30"></div>
+                            
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <button type="submit" class="lnk btn btn-primary">Filter</button>
+                </form></div></div><div class="clearfix"></div><div id="yith-woocompare-widget-1" class="sidebar-widget outer-bottom-small yith-woocompare-widget"><h3 class="section-title">Compare products</h3>
+                    <ul class="products-list" data-lang="">
+                        <li class="list_empty">No products to compare</li>            </ul>
+        
+                    <a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-remove-product&amp;id=all" data-product_id="all" class="clear-all" rel="nofollow">Clear all</a>
+                    <a href="/flipmart/shop/?action=yith-woocompare-view-table&amp;iframe=yes" class="compare added button" rel="nofollow">Compare</a>
+        
+                    </div><div class="clearfix"></div><div id="woocommerce_product_tag_cloud-1" class="sidebar-widget outer-bottom-small woocommerce widget_product_tag_cloud"><h3 class="section-title">Product tags</h3><div class="tagcloud"><a href="http://www.ckthemes.com/flipmart/product-tag/furniture/" class="tag-cloud-link tag-link-47 tag-link-position-1" style="font-size: 8pt;" aria-label="Furniture (1 product)">Furniture</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/phone/" class="tag-cloud-link tag-link-38 tag-link-position-2" style="font-size: 8pt;" aria-label="Phone (1 product)">Phone</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/rose/" class="tag-cloud-link tag-link-42 tag-link-position-3" style="font-size: 8pt;" aria-label="Rose (1 product)">Rose</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/smartphone/" class="tag-cloud-link tag-link-40 tag-link-position-4" style="font-size: 8pt;" aria-label="Smartphone (1 product)">Smartphone</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/sneaker/" class="tag-cloud-link tag-link-44 tag-link-position-5" style="font-size: 8pt;" aria-label="Sneaker (1 product)">Sneaker</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/sweatpants/" class="tag-cloud-link tag-link-45 tag-link-position-6" style="font-size: 8pt;" aria-label="Sweatpants (1 product)">Sweatpants</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/t-shirt/" class="tag-cloud-link tag-link-46 tag-link-position-7" style="font-size: 8pt;" aria-label="T-shirt (1 product)">T-shirt</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/toys/" class="tag-cloud-link tag-link-43 tag-link-position-8" style="font-size: 8pt;" aria-label="Toys (1 product)">Toys</a>
+        <a href="http://www.ckthemes.com/flipmart/product-tag/vest/" class="tag-cloud-link tag-link-39 tag-link-position-9" style="font-size: 8pt;" aria-label="Vest (1 product)">Vest</a></div></div><div class="clearfix"></div><div id="user-testimonial-widget-1" class="sidebar-widget outer-bottom-small user-testimonial">                <div id="advertisement" class="advertisement owl-carousel owl-theme" style="opacity: 1; display: block;">
+                                                         <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 1332px; left: 0px; display: block;"><div class="owl-item" style="width: 222px;"><div class="item">
+                                        <div class="avatar"><img width="110" height="110" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member1-150x150.png" class="attachment-110x110 size-110x110 wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member1-150x150.png 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member1.png 269w" sizes="(max-width: 110px) 100vw, 110px"></div>
+                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.</div><div class="clients_author">John Doe <span>Abc Company</span></div>                            </div></div><div class="owl-item" style="width: 222px;"><div class="item">
+                                        <div class="avatar"><img width="110" height="110" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member3-150x150.png" class="attachment-110x110 size-110x110 wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member3-150x150.png 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member3.png 300w" sizes="(max-width: 110px) 100vw, 110px"></div>
+                                        <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.</div><div class="clients_author">Stephen Doe <span>Xperia Designs</span></div>                            </div></div><div class="owl-item" style="width: 222px;"><div class="item">
+                                        <div class="avatar"><img width="110" height="110" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member2-150x150.png" class="attachment-110x110 size-110x110 wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member2-150x150.png 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/06/member2.png 269w" sizes="(max-width: 110px) 100vw, 110px"></div>
+                                        <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.</div><div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span></div>                            </div></div></div></div>
+                                                                
+                                                                
+                                     
+                        <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"></div></div></div></div>
+                        </div><div class="clearfix"></div>            <div class="home-banner outer-top-n outer-bottom-xs">
+                        <img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/04/LHS-banner.jpg" alt="Image">
+                    </div>
+                                    </div>
+                         </div>
+                         
+                                
+                    <div class="col-md-9 col-sm-12">
+                                            <div id="category" class="category-carousel hidden-xs">
+                              <div class="item">
+                              
+                                                        
+                                    <div class="image"> 
+                                        <img src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/07/cat-banner-1.jpg" alt="" class="img-responsive"> 
+                                    </div>
+                                    
+                                                        
+                                <div class="container-fluid">
+                                  <div class="caption vertical-top text-left">
+                                  
+                                    <div class="big-text">Big Sale</div><div class="excerpt hidden-sm hidden-md">Save up to 49% off</div><div class="excerpt-normal hidden-sm hidden-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit</div>                            
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        <div class="clearfix filters-container m-t-10">
+          <div class="row">
+          
+            <div class="col col-sm-3 col-md-2">
+              <div class="filter-tabs">
+                <ul id="filter-tabs" class="nav nav-tabs nav-tab-box nav-tab-fa-icon">
+                    
+                  <li class="grid-item active"> <a data-toggle="tab" href="#grid-container"><i class="icon fa fa-th-large"></i>Grid</a> </li>
+                  <li class="list-item "><a data-toggle="tab" href="#list-container"><i class="icon fa fa-th-list"></i>List</a></li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="col col-sm-6 col-md-6">
+                
+        <form class="woocommerce-ordering" method="get">
+            <div class="lbl-cnt"> <span class="lbl">Sort by</span>
+              <div class="fld inline">
+                <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+                    <select name="orderby" class="orderby btn" aria-label="Shop order">
+                                            <option value="menu_order" selected="selected">Default sorting</option>
+                                            <option value="popularity">Sort by popularity</option>
+                                            <option value="rating">Sort by average rating</option>
+                                            <option value="date">Sort by latest</option>
+                                            <option value="price">Sort by price: low to high</option>
+                                            <option value="price-desc">Sort by price: high to low</option>
+                                    </select>
+                </div>
+              </div>
+            </div>
+            
+            <input type="hidden" name="paged" value="1">
+            </form>    </div>
+          
+            <div class="col col-sm-3 col-md-4 text-right">
+                  <div class="lbl-cnt products-per-page"> 
+              <span class="lbl">Show</span>
+              <div class="fld inline">
+                <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+                  <form method="POST" class="woocommerce-products-per-page">
+                        <select name="yog-woocommerce-products-per-page" class="btn" onchange="this.form.submit()">
+                                                    <option value="12" selected="selected">12</option>
+                                                    <option value="24">24</option>
+                                                    <option value="48">48</option>
+                                                    <option value="96">96</option>
+                                            </select>
+                  </form>
+                </div>
+              </div>
+            </div>
+             
+            </div>
+        
+          </div>
+        </div><div class="woocommerce-notices-wrapper"></div><div class="search-result-container product-section">
+          <div id="myTabContent" class="tab-content category-list">
+            <div class="tab-pane active" id="grid-container">
+               <div class="category-product">
+                 </div>
+        
+                 
+<!-- ========================   display products    =========================== -->
+
+        <div class="row">
+
+            {% for product in products %}
+
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-131 status-publish first instock product_cat-music product_cat-posters has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            {% if product.special_price_id.sale_status == 1 %}
+                            <div class="tag sale"><span>sale</span></div>
+                            <div class="image"><a href="\details\?product_id={{product.id}}">
+                                <img width="300" height="300" src="{{product.main_image_id.main_image}}" class="img-responsive wp-post-image" alt=""  sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="\details\?product_id={{product.id}}">{{product.product_name}}</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                            <div class="product-price"><span class="woocs_price_code" data-product-id="144"><del><span class="woocommerce-Price-amount amount">{{product.product_price}}<span class="woocommerce-Price-currencySymbol">$</span></span></del> <ins><span class="woocommerce-Price-amount amount">{{product.special_price_id.strike_price}}<span class="woocommerce-Price-currencySymbol">$</span></span></ins></span></div>
+                        </div>
+
+
+
+
+                            {% elif product.special_price_id.sale_status == 0 %}
+                            <div class="tag new"><span>New</span></div>
+                            <div class="image"><a href="\details\?product_id={{product.id}}">
+                                <img width="300" height="300" src="{{product.main_image_id.main_image}}" class="img-responsive wp-post-image" alt=""  sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="\details\?product_id={{product.id}}">{{product.product_name}}</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+                        <div class="product-price"><span class="woocs_price_code" data-product-id="131"><span class="woocommerce-Price-amount amount">$<span class="woocommerce-Price-currencySymbol">{{product.product_price}}</span></span></span></div>
+                        </div>
+
+
+                            {% endif %}
+                            
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=131" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="131" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="131" class="quick-view" data-toggle="modal" data-target="#myModal131"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=131" rel="nofollow" data-product-id="131" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="\compare\?product_id={{product.id}}" class="compare" data-product_id="131" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-134 status-publish instock product_cat-clothing has-post-thumbnail taxable shipping-taxable purchasable product-type-variable">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag new"><span>New</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/ninja-silhouette/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p6.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p6.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p6-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p6-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p6-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/ninja-silhouette/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="134"><span class="woocommerce-Price-amount amount">10.00<span class="woocommerce-Price-currencySymbol">$</span></span> – <span class="woocommerce-Price-amount amount">15.00<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="http://www.ckthemes.com/flipmart/product/ninja-silhouette/" data-quantity="1" class="btn btn-primary icon button product_type_variable add_to_cart_button" data-product_id="134" data-product_sku="" aria-label="Select options for “Floral Print Buttoned”" rel="nofollow">Select options</a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="134" class="quick-view" data-toggle="modal" data-target="#myModal134"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-134">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=134" rel="nofollow" data-product-id="134" data-product-type="variable" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=134" class="compare" data-product_id="134" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-135 status-publish last instock product_cat-uncategorized has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="image"><a href="http://www.ckthemes.com/flipmart/product/floral-print-buttoned/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p19.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p19.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p19-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p19-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p19-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/floral-print-buttoned/">Floral Print Buttoned</a></h3>
+                            
+            <div class="product-price"><span class="woocs_price_code" data-product-id="135"><span class="woocommerce-Price-amount amount">870.99<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=135" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="135" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="135" class="quick-view" data-toggle="modal" data-target="#myModal135"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-135">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=135" rel="nofollow" data-product-id="135" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=135" class="compare" data-product_id="135" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+<!-- ========================================================================== -->
+        
+        
+        
+        
+        <div class="row">
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-136 status-publish first instock product_cat-clothing product_cat-t-shirts product_tag-furniture product_tag-rose product_tag-sneaker product_tag-sweatpants product_tag-t-shirt product_tag-toys has-post-thumbnail featured taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag new"><span>New</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/happy-ninja/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/12/air-zoom-terra-kiger-3-mens-running-shoe7097.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/12/air-zoom-terra-kiger-3-mens-running-shoe7097.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/12/air-zoom-terra-kiger-3-mens-running-shoe7097-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/12/air-zoom-terra-kiger-3-mens-running-shoe7097-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/12/air-zoom-terra-kiger-3-mens-running-shoe7097-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/happy-ninja/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 5.00 out of 5"><span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="136"><span class="woocommerce-Price-amount amount">788.99<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=136" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="136" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="136" class="quick-view" data-toggle="modal" data-target="#myModal136"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-136">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=136" rel="nofollow" data-product-id="136" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=136" class="compare" data-product_id="136" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-137 status-publish instock product_cat-posters has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag new"><span>New</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/ship-your-idea-2/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p17.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p17.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p17-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p17-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p17-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/ship-your-idea-2/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="137"><span class="woocommerce-Price-amount amount">450.99<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=137" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="137" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="137" class="quick-view" data-toggle="modal" data-target="#myModal137"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-137">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=137" rel="nofollow" data-product-id="137" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=137" class="compare" data-product_id="137" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-138 status-publish last instock product_cat-posters has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag new"><span>New</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/woo-ninja-2/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p16.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p16.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p16-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p16-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p16-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/woo-ninja-2/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.50 out of 5"><span style="width:90%">Rated <strong class="rating">4.50</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="138"><span class="woocommerce-Price-amount amount">19.99<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=138" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="138" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="138" class="quick-view" data-toggle="modal" data-target="#myModal138"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-138">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=138" rel="nofollow" data-product-id="138" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=138" class="compare" data-product_id="138" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-139 status-publish first instock product_cat-clothing product_cat-hoodies has-post-thumbnail sale taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag sale"><span>Sale</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/patient-ninja/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p15.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p15.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p15-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p15-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p15-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/patient-ninja/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.67 out of 5"><span style="width:93.4%">Rated <strong class="rating">4.67</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="139"><del><span class="woocommerce-Price-amount amount">390.99<span class="woocommerce-Price-currencySymbol">$</span></span></del> <ins><span class="woocommerce-Price-amount amount">290.99<span class="woocommerce-Price-currencySymbol">$</span></span></ins></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=139" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="139" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="139" class="quick-view" data-toggle="modal" data-target="#myModal139"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-139">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=139" rel="nofollow" data-product-id="139" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=139" class="compare" data-product_id="139" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-140 status-publish instock product_cat-uncategorized has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag new"><span>New</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/happy-ninja-2/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p14.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p14.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p14-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p14-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p14-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/happy-ninja-2/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 3.00 out of 5"><span style="width:60%">Rated <strong class="rating">3.00</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="140"><span class="woocommerce-Price-amount amount">143.99<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=140" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="140" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="140" class="quick-view" data-toggle="modal" data-target="#myModal140"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-140">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=140" rel="nofollow" data-product-id="140" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=140" class="compare" data-product_id="140" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-141 status-publish last instock product_cat-hot-products has-post-thumbnail featured taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag hot"><span>Hot</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/ninja-silhouette-2/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p13.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p13.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p13-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p13-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p13-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/ninja-silhouette-2/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="141"><span class="woocommerce-Price-amount amount">139.99<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=141" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="141" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="141" class="quick-view" data-toggle="modal" data-target="#myModal141"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-141">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=141" rel="nofollow" data-product-id="141" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=141" class="compare" data-product_id="141" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-142 status-publish first instock product_cat-clothing product_cat-hoodies has-post-thumbnail taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag new"><span>New</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/woo-logo-2/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/09/lunar-skyelux-mens-running-shoe6885.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2017/09/lunar-skyelux-mens-running-shoe6885.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/09/lunar-skyelux-mens-running-shoe6885-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/09/lunar-skyelux-mens-running-shoe6885-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2017/09/lunar-skyelux-mens-running-shoe6885-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/woo-logo-2/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="142"><span class="woocommerce-Price-amount amount">720.99<span class="woocommerce-Price-currencySymbol">$</span></span></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=142" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="142" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="142" class="quick-view" data-toggle="modal" data-target="#myModal142"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-142">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=142" rel="nofollow" data-product-id="142" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=142" class="compare" data-product_id="142" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-143 status-publish outofstock product_cat-posters has-post-thumbnail taxable shipping-taxable purchasable product-type-variable">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag out-stock">Out Of Stock</div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/ship-your-idea-3/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p11.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p11.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p11-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p11-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p11-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/ship-your-idea-3/">Floral Print Buttoned</a></h3>
+                            
+            <div class="product-price"><span class="woocs_price_code" data-product-id="143"></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="http://www.ckthemes.com/flipmart/product/ship-your-idea-3/" data-quantity="1" class="btn btn-primary icon button product_type_variable" data-product_id="143" data-product_sku="" aria-label="Select options for “Floral Print Buttoned”" rel="nofollow">Select options</a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="143" class="quick-view" data-toggle="modal" data-target="#myModal143"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-143">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=143" rel="nofollow" data-product-id="143" data-product-type="variable" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=143" class="compare" data-product_id="143" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+            <div class="col-md-4 col-sm-6 grid-products product type-product post-144 status-publish last instock product_cat-posters has-post-thumbnail sale taxable shipping-taxable purchasable product-type-simple">
+                <div class="products">
+                    <div class="product">
+                        <div class="product-image">
+                            <div class="tag sale"><span>Sale</span></div><div class="image"><a href="http://www.ckthemes.com/flipmart/product/flying-ninja/"><img width="300" height="300" src="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p10.jpg" class="img-responsive wp-post-image" alt="" srcset="http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p10.jpg 700w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p10-150x150.jpg 150w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p10-300x300.jpg 300w, http://www.ckthemes.com/flipmart/wp-content/uploads/2013/06/p10-600x600.jpg 600w" sizes="(max-width: 300px) 100vw, 300px"></a></div>                </div>
+                        <div class="product-info text-left">
+                            <h3 class="name"><a href="http://www.ckthemes.com/flipmart/product/flying-ninja/">Floral Print Buttoned</a></h3>
+                            <div class="star-rating" role="img" aria-label="Rated 4.00 out of 5"><span style="width:80%">Rated <strong class="rating">4.00</strong> out of 5</span></div>
+            <div class="product-price"><span class="woocs_price_code" data-product-id="144"><del><span class="woocommerce-Price-amount amount">700.99<span class="woocommerce-Price-currencySymbol">$</span></span></del> <ins><span class="woocommerce-Price-amount amount">600.99<span class="woocommerce-Price-currencySymbol">$</span></span></ins></span></div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                            <div class="action">
+                              <ul class="list-unstyled">
+                                                             <li class="add-cart-button btn-group"><a href="/flipmart/shop/?add-to-cart=144" data-quantity="1" class="btn btn-primary icon button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="144" data-product_sku="" aria-label="Add “Floral Print Buttoned” to your cart" rel="nofollow"><i class="fa fa-shopping-cart"></i></a></li>
+                                                             <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-131">
+                                        <button type="button" data-product="144" class="quick-view" data-toggle="modal" data-target="#myModal144"><i class="icon fa fa-search"></i></button>
+                                    </li>
+                                    <li class="yith-wcwl-add-to-wishlist lnk wishlist add-to-wishlist-144">
+                    <span class="yith-wcwl-add-button show" style="display:block">
+        
+                        <a href="/flipmart/shop/?add_to_wishlist=144" rel="nofollow" data-product-id="144" data-product-type="simple" class="add-to-cart">
+                <i class="fa fa-heart"></i>
+            </a>
+            
+                </span>
+        
+                <span class="yith-wcwl-wishlistaddedbrowse hide" style="display:none;">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <span class="yith-wcwl-wishlistexistsbrowse hide" style="display:none">
+                    <a href="http://www.ckthemes.com/flipmart/wishlist/" rel="nofollow" class="add-to-cart">
+                        <i class="fa fa-heart"></i>
+                    </a>
+                </span>
+        
+                <div style="clear:both"></div>
+                <div class="yith-wcwl-wishlistaddresponse"></div>
+            
+        </li>
+        
+        <li class="lnk"><a href="http://www.ckthemes.com/flipmart?action=yith-woocompare-add-product&amp;id=144" class="compare" data-product_id="144" rel="nofollow"><i class="fa fa-signal" aria-hidden="true"></i></a></li>                       </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            <div class="clearfix"></div></div></div></div></div><div class="clearfix"></div>
+        <div class="clearfix filters-container m-b-20"><div class="text-right"><div class="pagination-container"><ul class="list-inline list-unstyled"><li><span class="page current">1</span></li><li><a href="http://www.ckthemes.com/flipmart/shop/page/2/" title="2" class="page">2</a></li><li class="next"><a href="http://www.ckthemes.com/flipmart/shop/page/2/"><i class="fa fa-angle-right"></i></a></li></ul></div></div></div>        </div>
+                
+                        
+            </div>
+          </div>
+        </div>   
+
+
+
+
+
+{% endblock %}

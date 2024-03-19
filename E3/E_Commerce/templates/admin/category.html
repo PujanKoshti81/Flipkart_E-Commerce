@@ -1,0 +1,794 @@
+{% extends 'admin/home.html' %}
+{% block title %}
+<h1 class="page-header">Category <small>Welcome...</small></h1>
+{% endblock %}
+{% block content %}
+{% load static %}
+{% load staticfiles %}
+<div class="col-lg-10">
+    <!-- begin panel -->
+    <div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+        <!-- begin panel-heading -->
+        <div class="panel-heading">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title">Product Form  </h4>
+        </div>
+        <!-- end panel-heading -->
+        <!-- begin panel-body -->
+        <div class="panel-body">
+            
+            <form id="submit_categories">
+                {% csrf_token %} 
+                
+                
+                <div class="form-group row m-b-15">
+                    <label class="col-form-label col-md-3"> Category Level 1 : </label>
+                    <div class="col-md-6">
+                        <select class="form-control" name="category_level_1" id="option_cate_1" onchange="get_level_2_category(this.value)">
+                            <option selected disabled >Select level 1 category</option>
+                            {% for a in category_level_1 %}
+                                <option value="{{ a.id }}">{{ a.category_name }}</option>
+                            {% endfor %}
+                        </select>
+                        
+                    </div>
+                    <button type="button" href="#modal-dialog" class="btn btn-indigo " data-toggle="modal">ADD</button>
+                </div>
+
+                <!-- ------------------ Category Level 2 select option--------------------------- -->
+
+                <div id="div_category_level_2" >       
+                    <input type="text" hidden name="category_level_2" value="0">             
+                </div>
+                <!-- ------------------------------------------------------------------------------- -->
+
+                <!-- ------------------ Category Level 3 select option--------------------------- -->
+
+                <div id="div_category_level_3" >             
+                        <input type="text" hidden name="category_level_3" value="0">       
+                </div>
+                <!-- ------------------------------------------------------------------------------- -->
+
+                <!-- ------------------ Category Level 4 select option--------------------------- -->
+
+                <div id="div_category_level_4" >              
+                        <input type="text" hidden name="category_level_4" value="0">      
+                </div>
+                <!-- ------------------------------------------------------------------------------- -->
+
+                <!-- ------------------ Category Level 5 select option--------------------------- -->
+
+                <div id="div_category_level_5" >                    
+                        <input type="text" hidden name="category_level_5" value="0">
+                </div>
+                <!-- ------------------------------------------------------------------------------- -->
+
+
+                <div style="text-align: center;">
+                    <input class="btn btn-primary  col-md-2" type="button" onclick="add_category()" value="Submit">
+                </div>
+            </form>
+        </div>
+        <!-- end panel-body -->
+    </div>
+    <!-- end panel -->
+    
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- -----------To add new level 1 category  ------------------------ -->
+<!-- ================ MODULE 1 ===================================== -->
+
+<div class="modal fade" id="modal-dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="category_level_1_form">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New (level 1) Category</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row m-b-15">
+                        <label class="col-form-label col-md-3">Add Level 1 Category :</label>
+                        
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <input type="text" class="form-control m-b-5" name="category_1" placeholder="Add New Category">
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <!-- <a href="javascript:;" class="btn btn-success">Action</a> -->
+                    <input type="button" class="btn btn-success" onclick="add_level_1()" value="ADD">
+                </div>
+            </form>    
+        
+        </div>
+    </div>
+</div>
+<!-- <!===================================================================================> -->
+
+
+
+
+<!-- -----------To add new level 2 category------------------------ -->
+<!-- ===================== MODULE 2 =================================== -->
+<div class="modal fade" id="modal-dialog-2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="category_level_2_form">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New (level 2) Category</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Add Sub-Categories in ID :</label>
+                            <h1 id="selected_CL1"></h1>
+                            <input type="text"  id="set_id_CL1" name="ID_of_CL1">
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <input type="text" class="form-control m-b-5" name="category_2" placeholder="Add New Category">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <!-- <a href="javascript:;" class="btn btn-success">Action</a> -->
+                        <input type="button" class="btn btn-success" onclick="add_level_2()" value="ADD">
+                    </div>
+                </form>    
+            
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================================ -->
+
+
+
+<!-- -----------To add new level 3 category------------------------ -->
+<!-- ===================== MODULE 3 =================================== -->
+<div class="modal fade" id="modal-dialog-3">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="category_level_3_form">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New (level 3) Category</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Add Sub-Categories in ID :</label>
+                            <h1 id="selected_CL2"></h1>
+                            <input type="text"  id="set_id_CL2" name="ID_of_CL2">
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <input type="text" class="form-control m-b-5" name="category_3" placeholder="Add New Category">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <!-- <a href="javascript:;" class="btn btn-success">Action</a> -->
+                        <input type="button" class="btn btn-success" onclick="add_level_3()" value="ADD">
+                    </div>
+                </form>    
+            
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================================ -->
+
+
+
+    <!-- -----------To add new level 4 category------------------------ -->
+<!-- ===================== MODULE 4 =================================== -->
+<div class="modal fade" id="modal-dialog-4">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="category_level_4_form">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New (level 4) Category</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Add Sub-Categories in ID :</label>
+                            <h1 id="selected_CL3"></h1>
+                            <input type="text"  id="set_id_CL3" name="ID_of_CL3">
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <input type="text" class="form-control m-b-5" name="category_4" placeholder="Add New Category">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <!-- <a href="javascript:;" class="btn btn-success">Action</a> -->
+                        <input type="button" class="btn btn-success" onclick="add_level_4()" value="ADD">
+                    </div>
+                </form>    
+            
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================================ -->
+
+
+
+    
+    <!-- -----------To add new level 5 category------------------------ -->
+    <!-- ===================== MODULE 5 =================================== -->
+    <div class="modal fade" id="modal-dialog-5">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="category_level_5_form">
+                    {% csrf_token %}
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add New (level 5) Category</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row m-b-15">
+                            <label class="col-form-label col-md-3">Add Sub-Categories in ID :</label>
+                            <h1 id="selected_CL4"></h1>
+                            <input type="text"  id="set_id_CL4" name="ID_of_CL4">
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <input type="text" class="form-control m-b-5" name="category_5" placeholder="Add New Category">
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <!-- <a href="javascript:;" class="btn btn-success">Action</a> -->
+                        <input type="button" class="btn btn-success" onclick="add_level_5()" value="ADD">
+                    </div>
+                </form>    
+            
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================================ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ********************************** TABLE ***************************************** -->
+<div class="col-lg-10 ui-sortable">
+    <!-- begin panel -->
+    <div class="panel panel-inverse" data-sortable-id="table-basic-7">
+        <!-- begin panel-heading -->
+        <div class="panel-heading ui-sortable-handle">
+            <div class="panel-heading-btn">
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+                <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+            </div>
+            <h4 class="panel-title">UI Elements in Table <span class="label label-success m-l-5 t-minus-1">NEW</span></h4>
+        </div>
+        <!-- end panel-heading -->
+        <!-- begin panel-body -->
+        <div class="panel-body">
+            <!-- begin table-responsive -->
+            <div class="table-responsive">
+                <table class="table table-striped m-b-0"  >
+                    <thead>
+                        <tr>
+                            <th>level 1</th>
+                            <th>level 2</th>
+                            <th>level 3</th>
+                            <th>level 4</th>
+                            <th>level 5</th>
+                            <th width="1%">action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_content" >
+                        {% for i in all %}
+                        <tr>
+                            <td>{{ i.category_level_1 }}</td>
+                            <td>{{ i.category_level_2 }}</td>
+                            <td>{{ i.category_level_3 }}</td>
+                            <td>{{ i.category_level_4 }}</td>
+                            <td>{{ i.category_level_5 }}</td>
+                            <td class="with-btn" nowrap="">
+                                <a href="#" class="btn btn-sm btn-primary width-60 m-r-2">Edit</a>
+                                <a  onclick="del({{ i.id }})" class="btn btn-sm btn-white width-60">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                    
+                    
+                </table>
+
+
+
+
+            </div>
+            <!-- end table-responsive -->
+        </div>
+        <!-- end panel-body -->
+    </div>
+
+
+    <!-- end panel -->
+</div> 
+<!-- **************************************************************************** -->
+
+
+
+
+
+
+
+<!-- ################################# SCRIPTS ###################################### -->
+
+<script type="text/javascript"> 
+
+    function del(id){
+     
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                swal("Poof! Your imaginary file has been deleted!", {
+                icon: "success",
+                
+                },
+                $.ajax(
+                        {
+                            url:'/delete_category/',
+                            method: 'GET',
+                            data:{"id":id, csrfmiddlewaretoken:'{{ csrf_token }}'},
+                            datType: 'JSON',
+                            success: function(data){
+                                
+                                
+                                data.all.forEach(i => {
+                                    let rows =  '';
+                                    console.log(i.id);
+                                    rows += `
+                                    <tr>
+                                        <td>${ i.category_level_1 }</td>
+                                        <td>${ i.category_level_2 }</td>
+                                        <td>${ i.category_level_3 }</td>
+                                        <td>${ i.category_level_4 }</td>
+                                        <td>${ i.category_level_5 }</td>
+                                        <td class="with-btn" nowrap="">
+                                            <a href="#" class="btn btn-sm btn-primary width-60 m-r-2">Edit</a>
+                                            <a  onclick="del(${ i.category_level_1 })" class="btn btn-sm btn-white width-60">Delete</a>
+                                        </td>
+                                    </tr>`;
+                                        $('#table_content').html(rows);
+                                      });
+                                
+                              
+                            },
+                            failure: function(data){ }
+    
+                        }
+    
+                    ),
+                );
+            } else {
+                swal("Your imaginary file is safe!");
+    
+            }
+            });
+    }
+    
+    //    -------------ADD LEVEL 1 CATEGORY-------------------------------
+
+
+    // THIS FUNCTION WILL ADD NEW OPTIONS TO LEVEL 1  SELECT TAG
+
+       function add_level_1(){
+            $.ajax(
+                    {
+                        url:'/add_level_1_category/',
+                        method: 'GET',
+                        data: $('#category_level_1_form').serialize(),
+                        datType: 'JSON',
+                        success: function(dataa){
+                            
+                                var data = JSON.parse(dataa["data_name"].new) ;
+                              
+                                // console.log(data[0]['fields']['category_name']);
+                                // console.log(dataa["data_id"].id)
+                                var a = `<option value="${ dataa["data_id"].id }">${data[0]['fields']['category_name'] }</option>`;
+
+                                $("#option_cate_1").append(a);
+                                    
+                     
+                        },
+                        failure: function(data){
+                            alert('error data not save');
+                        }
+
+                    }
+
+                );
+
+                }
+
+    //    -------------ADD LEVEL 2 CATEGORY -------------------------------
+    
+    
+        // THIS FUNCTION WILL APPEND NEW SELECT TAG OF LEVEL 2 CATEGORY
+        
+
+    function get_level_2_category(id){
+
+        $.ajax({
+
+            url:"/get_level_2_category/",
+            method:"GET",
+            data:{"id":id, csrfmiddlewaretoken:'{{ csrf_token }}'},
+            datType:'JSON',
+            success:function(data){
+
+                var a = `
+                    <div class="form-group row m-b-15">
+                        <label class="col-form-label col-md-3"> Category Level 2: </label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="category_level_2" id="option_cate_2" onchange="get_level_3_category(this.value)">
+                                <option selected  value="0" >Select level 2 category</option>
+                                
+                            </select>
+                            
+                        </div>
+                        <button type="button" href="#modal-dialog-2" class="btn btn-indigo " data-toggle="modal">ADD</button>
+                    </div>
+                `; 
+                
+
+                $("#div_category_level_2").html(a);
+
+                
+                data.store_CL2.forEach(aa => {
+                    let rows='';
+                    rows += `<option value="${aa.id}" > ${aa.category_L2_name} </option>`;
+                    $('#option_cate_2').append(rows);
+                });
+
+
+            },
+            failure:function(data){}
+
+        });
+       
+        document.getElementById("selected_CL1").innerHTML = id ;
+        document.getElementById("set_id_CL1").value = id ;
+    }
+
+
+    //    -------------ADD LEVEL 2 CATEGORY-------------------------------
+
+
+    // THIS FUNCTION WILL ADD NEW OPTIONS TO LEVEL 2 SELECT TAG
+
+
+    function add_level_2(){
+        $.ajax({
+            url:"/add_level_2_category/",
+            method:"GET",
+            data:$("#category_level_2_form").serialize(),
+            datType:"JSON",
+            success:function(dataa){
+                var data = JSON.parse(dataa["data_name"].new) ;
+                              
+                console.log(data[0]['fields']['category_L2_name']);
+                console.log(dataa["data_id"].id)
+                
+                var a = `<option value="${ dataa["data_id"].id }">${data[0]['fields']['category_L2_name'] }</option>`;
+
+                $("#option_cate_2").append(a);
+            },
+            failure:function(data){}
+        })
+    }
+
+
+
+    //    -------------ADD LEVEL 2 CATEGORY -------------------------------
+    
+    
+    // THIS FUNCTION WILL APPEND NEW SELECT TAG OF LEVEL 2 CATEGORY
+
+
+    function get_level_3_category(id)
+    {
+        $.ajax({
+
+            url:"/get_level_3_category/",
+            method:"GET",
+            data:{"id":id, csrfmiddlewaretoken:'{{ csrf_token }}'},
+            datType:'JSON',
+            success:function(data){
+
+                var a = `
+                    <div class="form-group row m-b-15">
+                        <label class="col-form-label col-md-3"> Category Level 3: </label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="category_level_3" id="option_cate_3" onchange="get_level_4_category(this.value)">
+                                <option selected  value="0" >Select level 3 category</option>
+                                
+                            </select>
+                            
+                        </div>
+                        <button type="button" href="#modal-dialog-3" class="btn btn-indigo " data-toggle="modal">ADD</button>
+                    </div>
+                `; 
+                
+
+                $("#div_category_level_3").html(a);
+
+                
+                data.store_CL3.forEach(aa => {
+                    let rows='';
+                    rows += `<option value="${aa.id}" > ${aa.category_L3_name} </option>`;
+                    $('#option_cate_3').append(rows);
+                });
+
+
+            },
+            failure:function(data){}
+
+            });
+
+            document.getElementById("selected_CL2").innerHTML = id ;
+            document.getElementById("set_id_CL2").value = id ;
+            
+
+    }
+
+
+        //    -------------ADD LEVEL 3 CATEGORY-------------------------------
+
+
+    // THIS FUNCTION WILL ADD NEW OPTIONS TO LEVEL 3 SELECT TAG
+
+
+    function add_level_3(){
+        $.ajax({
+            url:"/add_level_3_category/",
+            method:"GET",
+            data:$("#category_level_3_form").serialize(),
+            datType:"JSON",
+            success:function(dataa){
+                var data = JSON.parse(dataa["data_name"].new) ;
+                              
+                console.log(data[0]['fields']['category_L3_name']);
+                console.log(dataa["data_id"].id)
+                
+                var a = `<option value="${ dataa["data_id"].id }">${data[0]['fields']['category_L3_name'] }</option>`;
+
+                $("#option_cate_3").append(a);
+            },
+            failure:function(data){}
+        })
+    }
+
+
+    
+
+    //    -------------ADD LEVEL 3 CATEGORY -------------------------------
+    
+    
+    // THIS FUNCTION WILL APPEND NEW SELECT TAG OF LEVEL 3 CATEGORY
+
+
+
+    function get_level_4_category(id){
+        $.ajax({
+
+            url:"/get_level_4_category/",
+            method:"GET",
+            data:{"id":id, csrfmiddlewaretoken:'{{ csrf_token }}'},
+            datType:'JSON',
+            success:function(data){
+
+                var a = `
+                    <div class="form-group row m-b-15">
+                        <label class="col-form-label col-md-3"> Category Level 4: </label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="category_level_4" id="option_cate_4" onchange="get_level_5_category(this.value)">
+                                <option selected value="0" >Select level 4 category</option>
+                                
+                            </select>
+                            
+                        </div>
+                        <button type="button" href="#modal-dialog-4" class="btn btn-indigo " data-toggle="modal">ADD</button>
+                    </div>
+                `; 
+                
+
+                $("#div_category_level_4").html(a);
+
+                
+                data.store_CL4.forEach(aa => {
+                    let rows='';
+                    rows += `<option value="${aa.id}" > ${aa.category_L4_name} </option>`;
+                    $('#option_cate_4').append(rows);
+                });
+
+
+            },
+            failure:function(data){}
+
+            });
+
+            document.getElementById("selected_CL3").innerHTML = id ;
+            document.getElementById("set_id_CL3").value = id ;
+    }
+
+
+
+    //    -------------ADD LEVEL 4 CATEGORY-------------------------------
+
+
+    // THIS FUNCTION WILL ADD NEW OPTIONS TO LEVEL 4 SELECT TAG
+
+
+    function add_level_4(){
+        $.ajax({
+            url:"/add_level_4_category/",
+            method:"GET",
+            data:$("#category_level_4_form").serialize(),
+            datType:"JSON",
+            success:function(dataa){
+                var data = JSON.parse(dataa["data_name"].new) ;
+                              
+                console.log(data[0]['fields']['category_L4_name']);
+                console.log(dataa["data_id"].id);
+                
+                var a = `<option value="${ dataa["data_id"].id }">${data[0]['fields']['category_L4_name'] }</option>`;
+
+                $("#option_cate_4").append(a);
+            },
+            failure:function(data){}
+        })
+    }
+
+
+    
+    //    -------------ADD LEVEL 4 CATEGORY -------------------------------
+    
+    
+    // THIS FUNCTION WILL APPEND NEW SELECT TAG OF LEVEL 4 CATEGORY
+
+
+
+    function get_level_5_category(id){
+        $.ajax({
+
+            url:"/get_level_5_category/",
+            method:"GET",
+            data:{"id":id, csrfmiddlewaretoken:'{{ csrf_token }}'},
+            datType:'JSON',
+            success:function(data){
+
+                var a = `
+                    <div class="form-group row m-b-15">
+                        <label class="col-form-label col-md-3"> Category Level 5: </label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="category_level_5" id="option_cate_5" >
+                                <option selected value="0" >Select level 5 category</option>
+                                
+                            </select>
+                            
+                        </div>
+                        <button type="button" href="#modal-dialog-5" class="btn btn-indigo " data-toggle="modal">ADD</button>
+                    </div>
+                `; 
+                
+
+                $("#div_category_level_5").html(a);
+
+                
+                data.store_CL5.forEach(aa => {
+                    let rows='';
+                    rows += `<option value="${aa.id}" > ${aa.category_L5_name} </option>`;
+                    $('#option_cate_5').append(rows);
+                });
+
+
+            },
+            failure:function(data){}
+
+            });
+
+            document.getElementById("selected_CL4").innerHTML = id ;
+            document.getElementById("set_id_CL4").value = id ;
+    }
+
+
+
+    //    -------------ADD LEVEL 5 CATEGORY-------------------------------
+
+
+    // THIS FUNCTION WILL ADD NEW OPTIONS TO LEVEL 5 SELECT TAG
+
+
+    function add_level_5(){
+        $.ajax({
+            url:"/add_level_5_category/",
+            method:"GET",
+            data:$("#category_level_5_form").serialize(),
+            datType:"JSON",
+            success:function(dataa){
+                var data = JSON.parse(dataa["data_name"].new) ;
+                              
+                console.log(data[0]['fields']['category_L5_name']);
+                console.log(dataa["data_id"].id)
+                
+                var a = `<option value="${ dataa["data_id"].id }">${data[0]['fields']['category_L5_name'] }</option>`;
+
+                $("#option_cate_5").append(a);
+            },
+            failure:function(data){}
+        })
+    }
+
+
+
+
+
+
+    // ================== SUBMIT ALL CATEGORIES TO THE DATABASE=============
+    function add_category(){
+        $.ajax({
+            url:"/submit_categories/",
+            data:$("#submit_categories").serialize(),
+            method:"GET",
+            datType:"JSON",
+            success:function(data){
+
+            },
+            failure:function(data){}
+        });
+    }
+
+    
+
+
+
+    </script>
+
+{% endblock %}
